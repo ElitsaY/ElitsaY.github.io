@@ -1,0 +1,257 @@
+:root {
+  --bg: #ffffff;
+  --text: #1c1c1c;
+  --muted: #6b6b6b;
+  --accent: #8a3b2b;
+  --rule: #e4e0da;
+  --serif: 'Lora', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --max-width: 760px;
+}
+
+* { box-sizing: border-box; }
+
+html { color-scheme: light; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 64px 24px 48px;
+}
+
+/* Hero */
+.hero {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+.portrait {
+  width: 148px;
+  height: 148px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 20%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px var(--rule);
+}
+
+.hero-text h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 2rem;
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+
+.affiliation {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 0.97rem;
+}
+
+.links {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.links a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.links a:hover { text-decoration: underline; }
+
+/* About */
+.about p {
+  font-family: var(--serif);
+  font-size: 1.06rem;
+  line-height: 1.75;
+  color: var(--text);
+  margin: 0 0 8px;
+}
+
+section {
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid var(--rule);
+}
+
+.hero + .about {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+h2 {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--accent);
+  margin: 0 0 18px;
+}
+
+.interests {
+  color: var(--text);
+  font-size: 0.98rem;
+  line-height: 1.9;
+}
+
+/* News */
+.news {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.news li {
+  display: flex;
+  gap: 16px;
+  padding: 7px 0;
+  font-size: 0.95rem;
+}
+
+.news .date {
+  flex-shrink: 0;
+  width: 60px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+  padding-top: 2px;
+}
+
+/* Publications */
+.pub {
+  margin-bottom: 22px;
+}
+
+.pub:last-child { margin-bottom: 0; }
+
+.pub-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.03rem;
+  margin-bottom: 4px;
+}
+
+.pub-authors {
+  font-size: 0.92rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.pub-venue {
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.pub-venue a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.pub-venue a:hover { text-decoration: underline; }
+
+/* Experience */
+.entry {
+  margin-bottom: 26px;
+}
+
+.entry:last-child { margin-bottom: 0; }
+
+.entry-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.entry-role {
+  font-weight: 600;
+  font-size: 0.98rem;
+}
+
+.entry-org {
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.entry-org a {
+  color: var(--muted);
+}
+
+.entry-date {
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.entry ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.entry li {
+  font-size: 0.93rem;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+
+/* Honors */
+.honors {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.honors li {
+  font-size: 0.95rem;
+  padding: 6px 0;
+}
+
+.honors a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.honors a:hover { text-decoration: underline; }
+
+.honors .date {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-left: 6px;
+}
+
+footer {
+  margin-top: 56px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* Responsive */
+@media (max-width: 560px) {
+  .wrap { padding: 40px 20px 32px; }
+  .hero { flex-direction: column; align-items: flex-start; gap: 18px; }
+  .portrait { width: 120px; height: 120px; }
+  .hero-text h1 { font-size: 1.7rem; }
+  .entry-head { flex-direction: column; gap: 2px; }
+}
