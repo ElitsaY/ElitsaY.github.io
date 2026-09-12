@@ -1,35 +1,20 @@
-# elitsay.github.io
+# ElitsaY.github.io
 
-Personal academic website, built with plain HTML/CSS (no build step).
+Personal academic page of Elitsa Yotkova. Plain HTML, no build step.
 
-## Structure
+- `index.html`: the whole site
+- `images/profile.jpg`: profile photo (square works best)
 
-- `index.html` — page content
-- `style.css` — styling
-- `assets/img/profile.jpg` — portrait
-- `assets/CV_Elitsa_Yotkova.pdf` — CV, linked from the page
+## Publish
 
-## Local preview
-
-```bash
-python3 -m http.server 4173
-```
-
-Then open http://localhost:4173.
-
-## Deploy to GitHub Pages
-
-1. Create a new **public** GitHub repo named exactly `ElitsaY.github.io` (must match your GitHub username `ElitsaY`).
-2. Push this folder to it:
+1. Create a **public** repo on GitHub named exactly `ElitsaY.github.io`.
+2. From this folder:
 
    ```bash
-   git remote add origin https://github.com/ElitsaY/ElitsaY.github.io.git
+   git init && git add . && git commit -m "Initial site"
    git branch -M main
+   git remote add origin https://github.com/ElitsaY/ElitsaY.github.io.git
    git push -u origin main
    ```
-3. In the repo's Settings → Pages, set the source to the `main` branch, root folder (GitHub Pages usually auto-detects this for a `username.github.io` repo).
-4. The site will be live at `https://elitsay.github.io/` within a few minutes.
 
-## Updating content
-
-Edit `index.html` directly — publications, news, and experience are plain HTML blocks near the top of the file, no templating involved.
+3. After a minute or two the site is live at https://elitsay.github.io/.

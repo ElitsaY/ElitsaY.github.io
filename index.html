@@ -1,206 +1,449 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Elitsa Yotkova</title>
-<meta name="description" content="Elitsa Yotkova — MSc student at Sofia University. Research on LLM evaluation, judge robustness, and reliable AI systems.">
-<link rel="icon" href="data:,">
+<meta name="description" content="Elitsa Yotkova — MSc student at Sofia University working on LLM evaluation, LLM-as-a-judge robustness, and benchmark design.">
+<meta property="og:title" content="Elitsa Yotkova">
+<meta property="og:description" content="LLM evaluation · Robustness of LLM & agent judges · Benchmark design">
+<meta property="og:image" content="images/profile.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #1f2328;
+    --muted: #5f6670;
+    --faint: #8b929a;
+    --rule: #e6e8eb;
+    --accent: #1d5fa8;
+    --accent-soft: #eaf2fb;
+    --chip: #f3f4f6;
+    --card: #fafbfc;
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #15171a;
+      --text: #e6e8eb;
+      --muted: #a4abb3;
+      --faint: #7c838b;
+      --rule: #2a2e33;
+      --accent: #7db3ee;
+      --accent-soft: #1b2733;
+      --chip: #22262b;
+      --card: #1b1e22;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  img { max-width: 100%; }
+
+  /* ---------- nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(160%) blur(8px);
+    -webkit-backdrop-filter: saturate(160%) blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner {
+    max-width: 860px; margin: 0 auto; padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    font-family: var(--sans); font-size: 15px;
+  }
+  .nav-name { color: var(--text); font-weight: 600; }
+  .nav-name:hover { text-decoration: none; }
+  .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .nav-links a { color: var(--muted); }
+  .nav-links a:hover { color: var(--accent); text-decoration: none; }
+
+  main { max-width: 860px; margin: 0 auto; padding: 48px 24px 32px; }
+
+  /* ---------- header ---------- */
+  .intro { display: grid; grid-template-columns: 1fr 230px; gap: 40px; align-items: start; }
+  h1 {
+    font-family: var(--serif); font-weight: 600;
+    font-size: 44px; line-height: 1.1; margin: 0 0 6px; letter-spacing: -0.01em;
+  }
+  .subtitle { font-family: var(--sans); font-size: 15px; color: var(--muted); margin: 0 0 22px; line-height: 1.5; }
+  .intro p { margin: 0 0 16px; }
+
+  .photo-wrap { position: relative; }
+  .photo {
+    width: 230px; height: 230px; border-radius: 50%;
+    object-fit: cover; object-position: center 20%;
+    display: block; background: var(--chip);
+    box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.08);
+  }
+  .photo-fallback {
+    width: 230px; height: 230px; border-radius: 50%;
+    display: none; align-items: center; justify-content: center;
+    background: var(--accent-soft); color: var(--accent);
+    font-family: var(--serif); font-size: 64px; font-weight: 600;
+  }
+
+  .socials { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; justify-content: center; }
+  .socials a {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 50%;
+    color: var(--muted); background: var(--chip);
+    transition: color .15s, background .15s, transform .15s;
+  }
+  .socials a:hover { color: #fff; background: var(--accent); transform: translateY(-1px); text-decoration: none; }
+  .socials svg { width: 19px; height: 19px; fill: currentColor; }
+
+  .interests { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 0; padding: 0; list-style: none; }
+  .interests li {
+    font-family: var(--sans); font-size: 13px; color: var(--text);
+    background: var(--chip); border-radius: 999px; padding: 4px 12px;
+  }
+
+  /* ---------- collaboration callout ---------- */
+  .collab {
+    margin: 44px 0 8px; padding: 22px 26px;
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent); border-radius: 6px;
+  }
+  .collab h2 { border: 0; margin: 0 0 8px; padding: 0; font-size: 22px; }
+  .collab p { margin: 0 0 10px; }
+  .collab p:last-child { margin-bottom: 0; }
+
+  /* ---------- sections ---------- */
+  section { margin-top: 52px; }
+  h2 {
+    font-family: var(--serif); font-weight: 600; font-size: 26px;
+    margin: 0 0 18px; padding-bottom: 8px; border-bottom: 1px solid var(--rule);
+  }
+
+  /* news */
+  .news { list-style: none; padding: 0; margin: 0; }
+  .news li { display: grid; grid-template-columns: 96px 1fr; gap: 16px; padding: 7px 0; }
+  .news time { font-family: var(--sans); font-size: 14px; color: var(--faint); padding-top: 3px; white-space: nowrap; }
+
+  /* publications */
+  .pub { display: grid; grid-template-columns: 120px 1fr; gap: 22px; padding: 18px 0; border-bottom: 1px dashed var(--rule); }
+  .pub:last-child { border-bottom: 0; }
+  .venue {
+    align-self: start; text-align: center;
+    font-family: var(--sans); font-size: 12.5px; font-weight: 600; letter-spacing: .02em;
+    color: #fff; background: var(--accent); border-radius: 4px; padding: 5px 6px; line-height: 1.3;
+  }
+  .venue.muted { background: var(--faint); }
+  .pub-title { font-weight: 600; font-size: 18.5px; line-height: 1.4; margin: 0 0 4px; }
+  .pub-title a { color: var(--text); }
+  .pub-title a:hover { color: var(--accent); }
+  .authors { margin: 0; color: var(--muted); font-size: 16.5px; }
+  .authors .me { color: var(--text); font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  .pub-venue { margin: 2px 0 0; font-style: italic; font-size: 16.5px; }
+  .tldr { margin: 8px 0 0; font-size: 16.5px; }
+  .pub-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .btn {
+    font-family: var(--sans); font-size: 12.5px; font-weight: 500; letter-spacing: .03em; text-transform: uppercase;
+    color: var(--text); background: transparent;
+    border: 1px solid var(--rule); border-radius: 4px; padding: 3px 10px; cursor: pointer; line-height: 1.5;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .abstract {
+    margin-top: 12px; padding: 14px 18px; font-size: 16px;
+    background: var(--card); border: 1px solid var(--rule); border-radius: 6px;
+  }
+  .equal { font-family: var(--sans); font-size: 13px; color: var(--faint); margin-top: 6px; }
+
+  /* experience */
+  .timeline { list-style: none; padding: 0; margin: 0; }
+  .timeline li { display: grid; grid-template-columns: 1fr auto; gap: 4px 20px; padding: 12px 0; }
+  .timeline .role { font-weight: 600; }
+  .timeline .org { color: var(--muted); }
+  .timeline .when { font-family: var(--sans); font-size: 14px; color: var(--faint); white-space: nowrap; padding-top: 3px; }
+  .timeline .desc { grid-column: 1 / -1; font-size: 16.5px; margin: 0; }
+
+  footer {
+    max-width: 860px; margin: 40px auto 0; padding: 24px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans); font-size: 13px; color: var(--faint); text-align: center;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 720px) {
+    body { font-size: 17px; }
+    .nav-links { display: none; }
+    main { padding-top: 32px; }
+    .intro { grid-template-columns: 1fr; gap: 24px; }
+    .photo-col { order: -1; display: flex; flex-direction: column; align-items: center; }
+    .photo, .photo-fallback { width: 180px; height: 180px; }
+    h1 { font-size: 36px; text-align: center; }
+    .subtitle { text-align: center; }
+    .pub { grid-template-columns: 1fr; gap: 10px; }
+    .venue { justify-self: start; padding: 3px 10px; }
+    .news li { grid-template-columns: 1fr; gap: 0; }
+    .timeline li { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
-<div class="bg-shape"></div>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" href="#">Elitsa Yotkova</a>
+    <div class="nav-links">
+      <a href="#collaborate">Collaborate</a>
+      <a href="#news">News</a>
+      <a href="#publications">Publications</a>
+      <a href="#experience">Experience</a>
+    </div>
+  </div>
+</nav>
 
-<div class="wrap">
+<main>
 
-  <header class="hero">
-    <div class="hero-text">
-      <p class="kicker">Hi, I&rsquo;m</p>
+  <!-- ================= INTRO ================= -->
+  <div class="intro">
+    <div>
       <h1>Elitsa Yotkova</h1>
-      <p class="tagline">I study why <em>AI judges get it wrong</em> &mdash; and try to build ones you can trust.</p>
-      <p class="affiliation">MSc student in Information Retrieval &amp; Knowledge Discovery, Sofia University &nbsp;&middot;&nbsp; based in Sofia, Bulgaria</p>
-      <p class="links">
-        <a href="mailto:eyotkova@gmail.com">Email</a>
-        <a href="assets/CV_Elitsa_Yotkova.pdf" target="_blank" rel="noopener">CV</a>
-        <a href="https://scholar.google.com/citations?user=-Y7pNIsAAAAJ&hl=bg" target="_blank" rel="noopener">Google Scholar</a>
-        <a href="https://github.com/ElitsaY" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/elitza-yotkova/" target="_blank" rel="noopener">LinkedIn</a>
+      <p class="subtitle">
+        MSc student in Information Retrieval &amp; Knowledge Discovery<br>
+        Faculty of Mathematics and Informatics, Sofia University “St. Kliment Ohridski” · Sofia, Bulgaria
       </p>
-    </div>
-    <img class="portrait" src="assets/img/profile.jpg" alt="Portrait of Elitsa Yotkova">
-  </header>
 
-  <section class="about">
+      <p>
+        Hi! I'm Elitsa. I study <strong>how we evaluate language models</strong>, and in particular
+        whether the automatic evaluators we increasingly rely on can actually be trusted.
+        When a free-form answer can be right in a dozen different ways, or wrong in subtle ones,
+        a single “correct / incorrect” label from an LLM judge hides a lot. My work tries to make those
+        judgments more fine-grained, more interpretable, and harder to fool.
+      </p>
+      <p>
+        At Sofia University I work with
+        Ivan Koychev
+        and Preslav Nakov (MBZUAI).
+        Most recently I spent the summer of 2026 at <strong>Google Zurich</strong> on a Search team, stress-testing
+        the reliability of an LLM autorater used for AI Mode. Before that, I was a software engineering intern
+        at Uber in Amsterdam, and since 2022 I've been a teaching assistant for algorithms and AI courses at FMI.
+      </p>
+
+      <ul class="interests" aria-label="Research interests">
+        <li>LLM-as-a-Judge</li>
+        <li>Agent-as-a-Judge</li>
+        <li>Robustness of evaluators</li>
+        <li>Benchmark design</li>
+        <li>Scalable oversight</li>
+        <li>Jailbreaks</li>
+      </ul>
+    </div>
+
+    <div class="photo-col">
+      <div class="photo-wrap">
+        <img class="photo" src="images/profile.jpg" alt="Photo of Elitsa Yotkova"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="photo-fallback" aria-hidden="true">EY</div>
+      </div>
+      <div class="socials">
+        <a href="mailto:eyotkova@g.fmi.uni-sofia.bg" title="Email" aria-label="Email">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 5-8-5V6l8 5 8-5z"/></svg>
+        </a>
+        <a href="https://scholar.google.com/citations?user=-Y7pNIsAAAAJ&amp;hl=en" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar">
+          <svg viewBox="0 0 24 24"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.84 3.92A8.96 8.96 0 0 1 12 9.99c2.93 0 5.53 1.4 7.17 3.43L24 9.5z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/elitza-yotkova/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        </a>
+        <a href="https://github.com/ElitsaY" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= COLLABORATION ================= -->
+  <div class="collab" id="collaborate">
+    <h2>Let's work together on judge robustness</h2>
     <p>
-      I work on the reliability of <strong>LLM-as-a-judge</strong> systems &mdash; how to evaluate open-ended model
-      outputs correctly, why judges disagree with humans (and with each other), and how to design benchmarks that
-      actually expose those failures instead of papering over them. Alongside my MSc, I'm a research assistant on
-      the SUMMIT project at Sofia University, and I've recently interned on Google Search's AI Mode team in Zurich
-      and built observability infrastructure at Uber in Amsterdam. I also teach &mdash; I've led six courses to
-      775+ students since 2022.
+      Over the next couple of months I'll be studying the <strong>robustness of LLM judges and agent judges</strong>:
+      when do they break, how can they be manipulated, and how can we tell when a judgment shouldn't be trusted?
+      I'd be more than happy to collaborate.
     </p>
-    <div class="chips">
-      <span class="chip">Agent-as-a-Judge Systems</span>
-      <span class="chip">Robustness of LLM Judges</span>
-      <span class="chip">Benchmark Design</span>
-      <span class="chip">Reliable AI Systems</span>
-      <span class="chip">Scalable Oversight</span>
-      <span class="chip">Jailbreaks</span>
-    </div>
-  </section>
+    <p>
+      If this sounds interesting, email me at
+      <a href="mailto:eyotkova@g.fmi.uni-sofia.bg?subject=Collaboration%3A%20robustness%20of%20LLM%20judges">eyotkova@g.fmi.uni-sofia.bg</a>
+      and tell me <em>why you want to work on the robustness of LLM judges</em>.
+    </p>
+  </div>
 
-  <section class="callout collaborate">
-    <div class="callout-icon">&#9670;</div>
-    <div>
-      <h3>Let&rsquo;s collaborate</h3>
-      <p>
-        I'm always glad to talk to people working on LLM evaluation, judge robustness, benchmark design, or
-        anything adjacent to trustworthy AI systems &mdash; whether that's a paper, a shared-task submission, an
-        open dataset, or just comparing notes. If that's you,
-        <a href="mailto:eyotkova@gmail.com?subject=Let%27s%20collaborate">say hello</a> &mdash; I read every email.
-      </p>
-    </div>
-  </section>
-
-  <section>
-    <h2><span class="num">01</span> News</h2>
+  <!-- ================= NEWS ================= -->
+  <section id="news">
+    <h2>News</h2>
     <ul class="news">
-      <li><span class="date">09/2026</span><span class="news-text">Our paper <em>&ldquo;How Correct Is Your Answer? A Semantic Correctness Framework for Open QA Evaluation&rdquo;</em> was accepted to <strong>EMNLP Findings 2026</strong>.</span></li>
-      <li><span class="date">08/2026</span><span class="news-text">Wrapped up my Software Engineering internship on the <strong>Google Search</strong> team in Zurich.</span></li>
-      <li><span class="date">04/2026</span><span class="news-text">Our paper <em>&ldquo;Lightweight Detection of LLM-generated Code via Stylometric Signals&rdquo;</em> was accepted to <strong>SemEval 2026</strong> (co-located with ACL).</span></li>
-      <li><span class="date">06/2026</span><span class="news-text">Started as a Software Engineering Intern on the Google Search team in Zurich, Switzerland.</span></li>
-      <li><span class="date">10/2025</span><span class="news-text">Began my MSc in Information Retrieval and Knowledge Discovery at Sofia University.</span></li>
+      <li>
+        <time datetime="2026-09">Sep 2026</time>
+        <span><a href="https://arxiv.org/abs/2609.01369" target="_blank" rel="noopener"><em>How Correct Is Your Answer?</em></a> was accepted to <strong>Findings of EMNLP 2026</strong>! The preprint is now on arXiv.</span>
+      </li>
+      <li>
+        <time datetime="2026-08">Aug 2026</time>
+        <span>Wrapped up my internship at Google Zurich, where I worked on evaluating the robustness of an LLM autorater for AI Mode in Search.</span>
+      </li>
+      <li>
+        <time datetime="2026-06">Jun 2026</time>
+        <span>Started a Software Engineering internship at <strong>Google Zurich</strong>.</span>
+      </li>
+      <li>
+        <time datetime="2026-04">Apr 2026</time>
+        <span>Our system paper on detecting LLM-generated code was published at <strong>SemEval 2026</strong> (co-located with ACL). Our line-level code-vs-text dataset received a <a href="https://www.kaggle.com/datasets/violetakastreva/line-level-code-vs-text-classification-dataset" target="_blank" rel="noopener">Silver Medal on Kaggle</a>.</span>
+      </li>
+      <li>
+        <time datetime="2025-10">Oct 2025</time>
+        <span>Started my MSc in Information Retrieval &amp; Knowledge Discovery at Sofia University.</span>
+      </li>
     </ul>
   </section>
 
-  <section class="callout semeval">
-    <div class="callout-icon">&#9670;</div>
-    <div>
-      <h3>Take part in SemEval&#8209;2027</h3>
-      <p>
-        SemEval was where my own research on LLM behavior started &mdash; our stylometric code-detection system
-        competed in SemEval 2026 Task&nbsp;13. The 21st edition, <strong>SemEval&#8209;2027</strong>, just opened
-        its 11 shared tasks, spanning reasoning &amp; inference, lexical semantics, cross-lingual understanding,
-        framing &amp; stereotype detection, and &mdash; especially relevant to what I work on &mdash; agent risk
-        evaluation and multi-hop tool-calling. If you're looking for a shared task to cut your teeth on or to test
-        a new idea against a real leaderboard, I'd genuinely encourage you to look through the
-        <a href="https://semeval.github.io/SemEval2027/tasks" target="_blank" rel="noopener">SemEval&#8209;2027 task list</a>
-        and sign up. And if you end up tackling one of the LLM-evaluation or agent-related tasks, I'd love to hear
-        about it &mdash; <a href="mailto:eyotkova@gmail.com?subject=SemEval%202027">reach out</a>.
-      </p>
-    </div>
-  </section>
-
-  <section>
-    <h2><span class="num">02</span> Publications</h2>
+  <!-- ================= PUBLICATIONS ================= -->
+  <section id="publications">
+    <h2>Publications</h2>
 
     <article class="pub">
-      <div class="pub-main">
-        <h3 class="pub-title">How Correct Is Your Answer? A Semantic Correctness Framework for Open QA Evaluation</h3>
-        <p class="pub-authors"><strong>E. Yotkova</strong>*, V. Kastreva*, P. Velkov, H. Boyanov, D. Dimitrov, P. Nakov, I. Koychev</p>
-        <p class="pub-venue">EMNLP Findings 2026 &nbsp;&middot;&nbsp; 09/2026</p>
-      </div>
-      <div class="pub-links"><a href="https://arxiv.org/abs/2609.01369" target="_blank" rel="noopener">arXiv &rarr;</a></div>
-    </article>
-
-    <article class="pub">
-      <div class="pub-main">
-        <h3 class="pub-title">Lightweight Detection of LLM-generated Code via Stylometric Signals</h3>
-        <p class="pub-authors"><strong>E. Yotkova</strong>*, V. Kastreva*, D. Dimitrov, I. Koychev, P. Nakov</p>
-        <p class="pub-venue">SemEval 2026, co-located with ACL &nbsp;&middot;&nbsp; 04/2026</p>
-      </div>
-      <div class="pub-links">
-        <a href="https://aclanthology.org/2026.semeval-1.275.pdf" target="_blank" rel="noopener">Paper &rarr;</a>
-        <a href="https://github.com/mbzuai-nlp/SemEval-2026-Task13" target="_blank" rel="noopener">Task &rarr;</a>
-        <a href="https://www.kaggle.com/datasets/violetakastreva/line-level-code-vs-text-classification-dataset" target="_blank" rel="noopener">Dataset &rarr;</a>
+      <div class="venue">EMNLP<br>Findings 2026</div>
+      <div>
+        <p class="pub-title"><a href="https://arxiv.org/abs/2609.01369" target="_blank" rel="noopener">How Correct Is Your Answer? A Semantic Correctness Framework for Open QA Evaluation</a></p>
+        <p class="authors"><span class="me">Elitsa Yotkova</span>*, Violeta Kastreva*, Petar Velkov, Hristo Boyanov, Dimitar Dimitrov, Ivan Koychev, Preslav Nakov</p>
+        <p class="pub-venue">Findings of the Association for Computational Linguistics: EMNLP 2026</p>
+        <p class="tldr">An eight-class taxonomy of how open-ended answers can be right or wrong, two new datasets, and CAP, an NLI-based metric that respects that ordering better than existing judges and similarity metrics.</p>
+        <div class="pub-links">
+          <button class="btn" type="button" aria-expanded="false" data-target="abs-cap">Abs</button>
+          <a class="btn" href="https://arxiv.org/abs/2609.01369" target="_blank" rel="noopener">arXiv</a>
+          <a class="btn" href="https://arxiv.org/pdf/2609.01369" target="_blank" rel="noopener">PDF</a>
+        </div>
+        <div class="abstract" id="abs-cap" hidden>
+          Free-form answers from LLMs can be correct in many surface forms, and they can fail in very different ways:
+          they may be incomplete, contradict the reference, add hallucinated content, or go along with a false premise.
+          Standard judge-based and similarity-based metrics tend to blur these cases together. We propose a semantic
+          correctness taxonomy with eight ordered classes that, for example, separates answers that are verbose but correct
+          from answers that also contain hallucinations. We release <strong>CAP-Correctness</strong>, an 8.8k-example
+          benchmark built from widely used QA datasets, and <strong>CAP-Statements</strong>, an 11k-example dataset for
+          turning question–answer pairs into declarative statements for NLI. Finally, we introduce <strong>CAP</strong>
+          (Context-Aware Precision), a reference-based metric that scores question-conditioned statements with
+          bidirectional NLI. In a monotonicity test that checks whether a metric respects the taxonomy's ordering,
+          CAP outperforms established baselines.
+        </div>
+        <p class="equal">* Equal contribution</p>
       </div>
     </article>
 
     <article class="pub">
-      <div class="pub-main">
-        <h3 class="pub-title">Behind the Label: Diagnosing LLM Judge Errors with Component-Level Judgments</h3>
-        <p class="pub-authors">P. Velkov, V. Kastreva, <strong>E. Yotkova</strong></p>
-        <p class="pub-venue">JUDGe @ NeurIPS &mdash; submitted &nbsp;&middot;&nbsp; Ongoing</p>
+      <div class="venue">SemEval<br>2026</div>
+      <div>
+        <p class="pub-title"><a href="https://aclanthology.org/2026.semeval-1.275.pdf" target="_blank" rel="noopener">FMI_SU_Yotkova_Kastreva at SemEval-2026 Task 13: Lightweight Detection of LLM-Generated Code via Stylometric Signals</a></p>
+        <p class="authors"><span class="me">Elitsa Yotkova</span>*, Violeta Kastreva*, Dimitar Dimitrov, Ivan Koychev, Preslav Nakov</p>
+        <p class="pub-venue">Proceedings of the 20th International Workshop on Semantic Evaluation (SemEval 2026), co-located with ACL</p>
+        <p class="tldr">A CPU-only detector of machine-generated code, built from length-robust stylometric features and a shallow decision tree, that beats fine-tuned code encoders such as GraphCodeBERT by +0.37 macro-F1.</p>
+        <div class="pub-links">
+          <button class="btn" type="button" aria-expanded="false" data-target="abs-semeval">Abs</button>
+          <a class="btn" href="https://aclanthology.org/2026.semeval-1.275.pdf" target="_blank" rel="noopener">PDF</a>
+          <a class="btn" href="https://github.com/violeta-kastreva/SemEvalTask13-SubtaskA" target="_blank" rel="noopener">Code</a>
+          <a class="btn" href="https://www.kaggle.com/datasets/violetakastreva/line-level-code-vs-text-classification-dataset" target="_blank" rel="noopener">Dataset</a>
+        </div>
+        <div class="abstract" id="abs-semeval" hidden>
+          SemEval-2026 Task 13 asks systems to detect machine-generated code across programming languages and
+          application scenarios, including languages and domains not seen during training. For Subtask A
+          (binary classification), we compare pretrained code encoders with lightweight feature-based approaches.
+          We design ratio-based stylometric features that are less sensitive to snippet length, and use parsers
+          and a programming-language classifier to extract signals about how descriptive the code is. We also train
+          a separate line-level classifier that finds natural-language text embedded in code samples. A shallow
+          decision tree combined with rules derived from data analysis produces the final predictions. The approach
+          trains on CPU only and runs inference almost instantly, making it a lightweight alternative to large
+          pretrained models.
+        </div>
+        <p class="equal">* Equal contribution</p>
       </div>
-      <div class="pub-links"><a href="https://judge2026.github.io/" target="_blank" rel="noopener">Workshop &rarr;</a></div>
+    </article>
+
+    <article class="pub">
+      <div class="venue muted">Under<br>review</div>
+      <div>
+        <p class="pub-title">Behind the Label: Diagnosing LLM Judge Errors with Component-Level Judgments</p>
+        <p class="authors">Petar Velkov, Violeta Kastreva, <span class="me">Elitsa Yotkova</span></p>
+        <p class="pub-venue">Submitted to <a href="https://judge2026.github.io/" target="_blank" rel="noopener">JUDGe Workshop @ NeurIPS 2026</a></p>
+        <p class="tldr">Splitting answer-correctness judgments into component-level decisions to find out <em>where</em> LLM judges make systematic errors.</p>
+      </div>
     </article>
   </section>
 
-  <section>
-    <h2><span class="num">03</span> Experience</h2>
-
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-date">06/2026 &ndash; 08/2026</div>
-        <div class="tl-body">
-          <div class="tl-role">Software Engineering Intern, Google Search team</div>
-          <div class="tl-org">Google &mdash; Zurich, Switzerland</div>
-          <ul>
-            <li>Evaluated the robustness and reliability of a citation-bias autorater for AI Mode in Google Search.</li>
-            <li>Benchmarked three Gemini models, defining custom metrics to quantify violation rates and failure modes in citing sources.</li>
-            <li>Designed a high-precision (99%+) lightweight autorater combining semantic embeddings with a linear classifier.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-date">11/2025 &ndash; 05/2026</div>
-        <div class="tl-body">
-          <div class="tl-role">Research Assistant, SUMMIT project</div>
-          <div class="tl-org">Sofia University &mdash; Sofia, Bulgaria</div>
-          <ul>
-            <li>Proposed and led development of a semantic correctness evaluation framework for open-ended QA.</li>
-            <li>Designed an 8-class taxonomy of LLM output correctness and CAP, a bidirectional weighted NLI metric.</li>
-            <li>Built an 8.8k benchmark exposing interpretable class-pair monotonicity violations in established metrics.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-date">02/2022 &ndash; Present</div>
-        <div class="tl-body">
-          <div class="tl-role">Teaching Assistant &mdash; C++, Python, ML</div>
-          <div class="tl-org">Sofia University &mdash; Sofia, Bulgaria &nbsp;&middot;&nbsp; <a href="https://github.com/ElitsaY" target="_blank" rel="noopener">GitHub</a></div>
-          <ul>
-            <li>Led 6 courses to 775+ students, including Data Structures &amp; Algorithms and Artificial Intelligence.</li>
-            <li>Supervised undergraduate NLP projects for the Artificial Intelligence course.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-date">02/2025 &ndash; 08/2025</div>
-        <div class="tl-body">
-          <div class="tl-role">Software Engineer Intern &mdash; Go, Python, SQL</div>
-          <div class="tl-org">Uber &mdash; Amsterdam, Netherlands</div>
-          <ul>
-            <li>Built an end-to-end observability dashboard with a Go API (95%+ test coverage) and a data pipeline processing 7.3M records.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2><span class="num">04</span> Honors &amp; Awards</h2>
-    <ul class="honors">
-      <li><a href="https://www.progress.com/social-responsibility/women-in-stem-scholarships/recipients" target="_blank" rel="noopener">Woman In Tech Scholarship</a>, Progress Software <span class="date">2023</span></li>
-      <li>2nd Place, National Collegiate Programming Contest (C++), Sofia University <span class="date">2024</span></li>
+  <!-- ================= EXPERIENCE ================= -->
+  <section id="experience">
+    <h2>Experience</h2>
+    <ul class="timeline">
+      <li>
+        <div><span class="role">Software Engineering Intern</span> · <span class="org">Google, Search · Zurich</span></div>
+        <div class="when">Jun – Aug 2026</div>
+        <p class="desc">Evaluated the robustness of a citation-bias autorater for AI Mode across three Gemini models, showed that a heuristic baseline doesn't generalize, and built a lightweight embedding-based autorater with over 99% precision.</p>
+      </li>
+      <li>
+        <div><span class="role">Research Assistant</span> · <span class="org">Sofia University, SUMMIT project</span></div>
+        <div class="when">Nov 2025 – May 2026</div>
+        <p class="desc">Led the semantic-correctness framework for open QA evaluation that became our EMNLP Findings paper.</p>
+      </li>
+      <li>
+        <div><span class="role">Software Engineering Intern</span> · <span class="org">Uber · Amsterdam</span></div>
+        <div class="when">Feb – Aug 2025</div>
+        <p class="desc">Built an end-to-end observability dashboard: a Go API and a data pipeline processing millions of records.</p>
+      </li>
+      <li>
+        <div><span class="role">Teaching Assistant</span> · <span class="org">Sofia University, FMI</span></div>
+        <div class="when">2022 – present</div>
+        <p class="desc">Six courses and 775+ students, including Data Structures &amp; Algorithms and Artificial Intelligence. I also supervise student NLP projects.</p>
+      </li>
     </ul>
   </section>
 
-  <footer>
-    <p>&copy; 2026 Elitsa Yotkova</p>
-  </footer>
+  <!-- ================= EDUCATION & HONORS ================= -->
+  <section id="education">
+    <h2>Education &amp; Honors</h2>
+    <ul class="timeline">
+      <li>
+        <div><span class="role">MSc, Information Retrieval &amp; Knowledge Discovery</span> · <span class="org">Sofia University “St. Kliment Ohridski”</span></div>
+        <div class="when">2025 – 2027 (exp.)</div>
+      </li>
+      <li>
+        <div><span class="role">2nd Place</span> · <span class="org">National Collegiate Programming Contest</span></div>
+        <div class="when">2024</div>
+      </li>
+      <li>
+        <div><span class="role"><a href="https://www.progress.com/social-responsibility/women-in-stem-scholarships/recipients" target="_blank" rel="noopener">Women in Tech Scholarship</a></span> · <span class="org">Progress Software</span></div>
+        <div class="when">2023</div>
+      </li>
+    </ul>
+  </section>
 
-</div>
+</main>
+
+<footer>
+  © 2026 Elitsa Yotkova · Hosted on GitHub Pages
+</footer>
+
+<script>
+  document.querySelectorAll('button[data-target]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var el = document.getElementById(btn.dataset.target);
+      var open = el.hidden;
+      el.hidden = !open;
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  });
+</script>
 </body>
 </html>
