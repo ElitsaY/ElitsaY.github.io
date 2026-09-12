@@ -3,7 +3,7 @@
 Personal academic page of Elitsa Yotkova. Plain HTML, no build step.
 
 - `index.html`: the whole site
-- `images/profile.jpg`: profile photo (square works best)
+- `assets/img/profile.jpg`: profile photo (square works best)
 
 ## Publish
 
