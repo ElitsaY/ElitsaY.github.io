@@ -114,6 +114,45 @@
     background: var(--chip); border-radius: 999px; padding: 4px 12px;
   }
 
+  /* ---------- lead, labels, fact bullets ---------- */
+  .lead { font-size: 20px; margin: 0 0 6px; }
+  .label {
+    font-family: var(--sans); font-size: 12px; font-weight: 600;
+    letter-spacing: .09em; text-transform: uppercase; color: var(--faint);
+    margin: 24px 0 8px;
+  }
+  .facts { list-style: none; padding: 0; margin: 0; }
+  .facts li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 17px; }
+  .facts li::before { content: "▸"; position: absolute; left: 0; top: -1px; color: var(--accent); }
+
+  /* ---------- contact list under photo ---------- */
+  .contact {
+    list-style: none; margin: 20px 0 0; padding: 0;
+    font-family: var(--sans); font-size: 13.5px; width: 230px;
+  }
+  .contact li {
+    display: flex; align-items: center; gap: 9px;
+    padding: 6px 0; color: var(--muted); border-bottom: 1px solid var(--rule);
+  }
+  .contact li:last-child { border-bottom: 0; }
+  .contact svg { width: 15px; height: 15px; fill: currentColor; color: var(--faint); flex: 0 0 auto; }
+  .contact a { color: var(--text); overflow-wrap: anywhere; }
+  .contact a:hover { color: var(--accent); }
+  .copy {
+    margin-left: auto; flex: 0 0 auto; cursor: pointer;
+    font-family: var(--sans); font-size: 10.5px; font-weight: 500;
+    letter-spacing: .05em; text-transform: uppercase;
+    color: var(--muted); background: var(--chip);
+    border: 1px solid var(--rule); border-radius: 4px; padding: 2px 7px;
+  }
+  .copy:hover { color: var(--accent); border-color: var(--accent); }
+  .copy.done { color: #fff; background: var(--accent); border-color: var(--accent); }
+
+  /* ---------- collaboration topics ---------- */
+  .topics { list-style: none; padding: 0; margin: 12px 0 16px; }
+  .topics li { position: relative; padding-left: 22px; margin-bottom: 10px; }
+  .topics li::before { content: "◆"; position: absolute; left: 0; top: 2px; font-size: 11px; color: var(--accent); }
+
   /* ---------- collaboration callout ---------- */
   .collab {
     margin: 44px 0 8px; padding: 22px 26px;
@@ -189,6 +228,8 @@
     .photo, .photo-fallback { width: 180px; height: 180px; }
     h1 { font-size: 36px; text-align: center; }
     .subtitle { text-align: center; }
+    .lead { font-size: 18px; }
+    .contact { width: 100%; max-width: 330px; font-size: 14px; }
     .pub { grid-template-columns: 1fr; gap: 10px; }
     .venue { justify-self: start; padding: 3px 10px; }
     .news li { grid-template-columns: 1fr; gap: 0; }
@@ -221,22 +262,36 @@
         Faculty of Mathematics and Informatics, Sofia University “St. Kliment Ohridski” · Sofia, Bulgaria
       </p>
 
-      <p>
-        Hi! I'm Elitsa. I study <strong>how we evaluate language models</strong>, and in particular
-        whether the automatic evaluators we increasingly rely on can actually be trusted.
-        When a free-form answer can be right in a dozen different ways, or wrong in subtle ones,
-        a single “correct / incorrect” label from an LLM judge hides a lot. My work tries to make those
-        judgments more fine-grained, more interpretable, and harder to fool.
-      </p>
-      <p>
-        At Sofia University I work with
-        Ivan Koychev
-        and Preslav Nakov (MBZUAI).
-        Most recently I spent the summer of 2026 at <strong>Google Zurich</strong> on a Search team, stress-testing
-        the reliability of an LLM autorater used for AI Mode. Before that, I was a software engineering intern
-        at Uber in Amsterdam, and since 2022 I've been a teaching assistant for algorithms and AI courses at FMI.
+      <p class="lead">
+        Hi! I'm Elitsa. I study <strong>how we evaluate language models</strong> — and whether the
+        automatic judges we increasingly rely on can be trusted to do it.
       </p>
 
+      <p class="label">Current focus</p>
+      <ul class="facts">
+        <li>
+          <strong>Robustness of LLM and agent judges:</strong> when they break, how they can be
+          manipulated, and how to tell when a judgment shouldn't be trusted.
+        </li>
+        <li>
+          <strong>Fine-grained correctness:</strong> a single “correct / incorrect” label hides a lot,
+          so I build taxonomies, NLI-based metrics and benchmarks that expose those failures instead of averaging them away.
+        </li>
+        <li>
+          MSc student and research assistant at <strong>Sofia University</strong> (SUMMIT project),
+          working with Ivan Koychev and Preslav Nakov (MBZUAI).
+        </li>
+      </ul>
+
+      <p class="label">Previously</p>
+      <ul class="facts">
+        <li>
+          Software engineering intern at <strong>Google Zurich</strong> (Search) and <strong>Uber</strong> Amsterdam;
+          teaching algorithms and AI at FMI since 2022.
+        </li>
+      </ul>
+
+      <p class="label">Interests</p>
       <ul class="interests" aria-label="Research interests">
         <li>LLM-as-a-Judge</li>
         <li>Agent-as-a-Judge</li>
@@ -253,35 +308,50 @@
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="photo-fallback" aria-hidden="true">EY</div>
       </div>
-      <div class="socials">
-        <a href="mailto:eyotkova@g.fmi.uni-sofia.bg" title="Email" aria-label="Email">
-          <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 5-8-5V6l8 5 8-5z"/></svg>
-        </a>
-        <a href="https://scholar.google.com/citations?user=-Y7pNIsAAAAJ&amp;hl=en" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar">
-          <svg viewBox="0 0 24 24"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.84 3.92A8.96 8.96 0 0 1 12 9.99c2.93 0 5.53 1.4 7.17 3.43L24 9.5z"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/elitza-yotkova/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
-        </a>
-        <a href="https://github.com/ElitsaY" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
-          <svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3"/></svg>
-        </a>
-      </div>
+      <ul class="contact">
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 5-8-5V6l8 5 8-5z"/></svg>
+          <a href="mailto:eyotkova@g.fmi.uni-sofia.bg">eyotkova@g.fmi.uni-sofia.bg</a>
+          <button class="copy" type="button" data-copy="eyotkova@g.fmi.uni-sofia.bg" title="Copy email address">Copy</button>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.84 3.92A8.96 8.96 0 0 1 12 9.99c2.93 0 5.53 1.4 7.17 3.43L24 9.5z"/></svg>
+          <a href="https://scholar.google.com/citations?user=-Y7pNIsAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          <a href="https://www.linkedin.com/in/elitza-yotkova/" target="_blank" rel="noopener">LinkedIn</a>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3"/></svg>
+          <a href="https://github.com/ElitsaY" target="_blank" rel="noopener">GitHub</a>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+          <span>FMI, Sofia University · Sofia, Bulgaria</span>
+        </li>
+      </ul>
     </div>
   </div>
 
   <!-- ================= COLLABORATION ================= -->
   <div class="collab" id="collaborate">
-    <h2>Let's work together on judge robustness</h2>
+    <h2>Open for collaboration</h2>
     <p>
-      Over the next couple of months I'll be studying the <strong>robustness of LLM judges and agent judges</strong>:
-      when do they break, how can they be manipulated, and how can we tell when a judgment shouldn't be trusted?
-      I'd be more than happy to collaborate.
+      Over the next couple of months I'll be working on the <strong>robustness of LLM judges and agent judges</strong>,
+      and I'd be more than happy to collaborate. Concretely, these are the questions I'd like to attack:
     </p>
+    <ul class="topics">
+      <li><strong>What breaks a judge?</strong> Position, verbosity and self-preference bias, prompt perturbations, and answers written to be persuasive rather than correct.</li>
+      <li><strong>Agent judges.</strong> When judging becomes multi-step and tool-using, where do the errors actually enter, and does more scaffolding help or just hide the mistake?</li>
+      <li><strong>Knowing when not to trust a verdict.</strong> Calibration and abstention: a judge that says “I'm not sure” is more useful than one that is confidently wrong.</li>
+      <li><strong>Benchmarks that expose these failures</strong> instead of averaging them away.</li>
+    </ul>
     <p>
-      If this sounds interesting, email me at
+      If any of this sounds interesting, email me at
       <a href="mailto:eyotkova@g.fmi.uni-sofia.bg?subject=Collaboration%3A%20robustness%20of%20LLM%20judges">eyotkova@g.fmi.uni-sofia.bg</a>
       and tell me <em>why you want to work on the robustness of LLM judges</em>.
+      Students looking for a thesis topic in this direction are welcome too.
     </p>
   </div>
 
@@ -295,19 +365,11 @@
       </li>
       <li>
         <time datetime="2026-08">Aug 2026</time>
-        <span>Wrapped up my internship at Google Zurich, where I worked on evaluating the robustness of an LLM autorater for AI Mode in Search.</span>
-      </li>
-      <li>
-        <time datetime="2026-06">Jun 2026</time>
-        <span>Started a Software Engineering internship at <strong>Google Zurich</strong>.</span>
+        <span><em>Behind the Label</em>, on diagnosing LLM judge errors at the component level, was submitted to the <a href="https://judge2026.github.io/" target="_blank" rel="noopener">JUDGe workshop @ NeurIPS 2026</a>.</span>
       </li>
       <li>
         <time datetime="2026-04">Apr 2026</time>
-        <span>Our system paper on detecting LLM-generated code was published at <strong>SemEval 2026</strong> (co-located with ACL). Our line-level code-vs-text dataset received a <a href="https://www.kaggle.com/datasets/violetakastreva/line-level-code-vs-text-classification-dataset" target="_blank" rel="noopener">Silver Medal on Kaggle</a>.</span>
-      </li>
-      <li>
-        <time datetime="2025-10">Oct 2025</time>
-        <span>Started my MSc in Information Retrieval &amp; Knowledge Discovery at Sofia University.</span>
+        <span>Our system paper on detecting LLM-generated code appeared at <strong>SemEval 2026</strong> (co-located with ACL), and the line-level code-vs-text dataset behind it earned a <a href="https://www.kaggle.com/datasets/violetakastreva/line-level-code-vs-text-classification-dataset" target="_blank" rel="noopener">Silver Medal on Kaggle</a>.</span>
       </li>
     </ul>
   </section>
@@ -436,6 +498,33 @@
 </footer>
 
 <script>
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var value = btn.dataset.copy;
+      var done = function () {
+        btn.textContent = 'Copied';
+        btn.classList.add('done');
+        setTimeout(function () { btn.textContent = 'Copy'; btn.classList.remove('done'); }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(value).then(done, fallback);
+      } else {
+        fallback();
+      }
+      function fallback() {
+        var ta = document.createElement('textarea');
+        ta.value = value;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); done(); } catch (e) { /* clipboard unavailable */ }
+        document.body.removeChild(ta);
+      }
+    });
+  });
+
   document.querySelectorAll('button[data-target]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var el = document.getElementById(btn.dataset.target);
