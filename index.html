@@ -4,412 +4,256 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Elitsa Yotkova</title>
-<meta name="description" content="Elitsa Yotkova — MSc student at Sofia University working on LLM evaluation, LLM-as-a-judge robustness, and benchmark design.">
+<meta name="description" content="Elitsa Yotkova — MSc student at Sofia University working on the robustness of LLM judges, evaluation, and frontier AI safety.">
 <meta property="og:title" content="Elitsa Yotkova">
-<meta property="og:description" content="LLM evaluation · Robustness of LLM & agent judges · Benchmark design">
+<meta property="og:description" content="Robustness of LLM judges · Evaluation · Frontier AI safety">
 <meta property="og:image" content="assets/img/profile.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #ffffff;
-    --text: #1d1a1e;
-    --muted: #57505a;
-    --faint: #8b838f;
-    --rule: #ece2e7;
-    --accent: #a05a7c;
-    --accent-dark: #7d4360;
-    --accent-soft: #fbf1f5;
-    --chip: #f8f0f4;
-    --card: #ffffff;
-    --wash-1: #fbeef4;
-    --wash-2: #f9f1f7;
-    --serif: "Poppins", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --text: #1c2127;
+    --muted: #525c67;
+    --faint: #8a939d;
+    --rule: #e5e8ec;
+    --accent: #2b6a8f;
+    --accent-dark: #1d4f6d;
+    --accent-soft: #eef5f9;
+    --chip: #f3f5f7;
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
     --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #1a151b;
-      --text: #f4eef2;
-      --muted: #c0b3bd;
-      --faint: #978a94;
-      --rule: #372d38;
-      --accent: #e0a3bf;
-      --accent-dark: #efc2d6;
-      --accent-soft: #261e28;
-      --chip: #272029;
-      --card: #231d26;
-      --wash-1: #2b1f27;
-      --wash-2: #261e2a;
+      --bg: #14181c;
+      --text: #e9edf1;
+      --muted: #b0b9c3;
+      --faint: #7f8a95;
+      --rule: #2a3138;
+      --accent: #85bddc;
+      --accent-dark: #a9d2e8;
+      --accent-soft: #1b252d;
+      --chip: #1e252c;
     }
   }
 
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
   body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
     font-family: var(--sans);
-    font-size: 16.5px;
+    font-size: 16px;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
   a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  a:hover { color: var(--accent-dark); text-decoration: underline; text-underline-offset: 3px; }
   img { max-width: 100%; }
+
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
 
   /* ---------- nav ---------- */
   nav {
     position: sticky; top: 0; z-index: 10;
-    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
     backdrop-filter: saturate(160%) blur(8px);
     -webkit-backdrop-filter: saturate(160%) blur(8px);
     border-bottom: 1px solid var(--rule);
   }
   .nav-inner {
-    max-width: 860px; margin: 0 auto; padding: 14px 24px;
     display: flex; align-items: center; justify-content: space-between; gap: 16px;
-    font-family: var(--sans); font-size: 15px;
+    padding-top: 14px; padding-bottom: 14px; font-size: 14.5px;
   }
-  .nav-name { color: var(--text); font-weight: 600; }
-  .nav-name:hover { text-decoration: none; }
-  .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .nav-name { font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--text); }
+  .nav-name:hover { color: var(--text); text-decoration: none; }
+  .nav-links { display: flex; gap: 24px; flex-wrap: wrap; }
   .nav-links a { color: var(--muted); }
   .nav-links a:hover { color: var(--accent); text-decoration: none; }
 
-  main { max-width: 860px; margin: 0 auto; padding: 0 24px 32px; }
-
-  /* ---------- hero with node-graph background ---------- */
-  .hero {
-    position: relative; overflow: hidden;
-    padding: 56px 0 46px;
-    background: none;
-  }
-  .hero-inner { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 24px; }
-
   /* ---------- header ---------- */
-  .intro { display: grid; grid-template-columns: 1fr 250px; gap: 44px; align-items: start; }
-  h1 {
-    font-family: var(--serif); font-weight: 600;
-    font-size: 27px; line-height: 1.2; margin: 18px 0 5px; letter-spacing: -0.015em;
-    text-align: center;
-  }
-  .subtitle {
-    font-family: var(--sans); font-size: 13.5px; font-weight: 500;
-    color: var(--text); margin: 0; line-height: 1.55; text-align: center;
-  }
-  .intro p { margin: 0 0 16px; }
-
-  .photo-wrap { position: relative; }
-  .photo {
-    width: 230px; height: 230px; border-radius: 50%;
-    object-fit: cover; object-position: center 20%;
-    display: block; background: var(--chip);
-    box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.08);
+  header { padding: 64px 0 20px; }
+  .intro { display: grid; grid-template-columns: 280px 1fr; gap: 48px; align-items: start; }
+  .photo, .photo-fallback {
+    width: 200px; height: 200px; border-radius: 50%;
+    object-fit: cover; object-position: center 20%; display: block;
+    background: var(--chip);
   }
   .photo-fallback {
-    width: 230px; height: 230px; border-radius: 50%;
     display: none; align-items: center; justify-content: center;
     background: var(--accent-soft); color: var(--accent);
-    font-family: var(--serif); font-size: 60px; font-weight: 600;
+    font-family: var(--serif); font-size: 56px; font-weight: 600;
   }
+  h1 {
+    font-family: var(--serif); font-weight: 600;
+    font-size: 42px; line-height: 1.1; letter-spacing: -0.015em; margin: 4px 0 8px;
+  }
+  .subtitle { margin: 0 0 22px; color: var(--muted); font-size: 15px; }
+  .lead { font-size: 17.5px; line-height: 1.7; margin: 0 0 14px; }
 
-  .socials { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; justify-content: center; }
-  .socials a {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 40px; height: 40px; border-radius: 50%;
-    color: var(--muted); background: var(--chip);
-    transition: color .15s, background .15s, transform .15s;
-  }
-  .socials a:hover { color: #fff; background: var(--accent); transform: translateY(-1px); text-decoration: none; }
-  .socials svg { width: 19px; height: 19px; fill: currentColor; }
-
-  .interests { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 0; padding: 0; list-style: none; }
-  .interests li {
-    font-family: var(--sans); font-size: 13px; color: var(--text);
-    background: var(--chip); border-radius: 999px; padding: 4px 12px;
-  }
-
-  /* ---------- lead, labels, fact bullets ---------- */
-  .lead { font-size: 18px; margin: 0 0 6px; }
-  .label {
-    font-family: var(--sans); font-size: 12px; font-weight: 600;
-    letter-spacing: .09em; text-transform: uppercase; color: var(--faint);
-    margin: 24px 0 8px;
-  }
-  .facts { list-style: none; padding: 0; margin: 0; }
-  .facts li { position: relative; padding-left: 20px; margin-bottom: 9px; font-size: 15.5px; }
-  .facts li::before { content: "▸"; position: absolute; left: 0; top: -1px; color: var(--accent); }
-
-  /* ---------- contact list under photo ---------- */
-  .contact {
-    list-style: none; margin: 18px 0 0; padding: 0;
-    font-family: var(--sans); font-size: 14px; font-weight: 500; width: 250px;
-  }
-  .contact li {
-    display: flex; align-items: center; gap: 10px;
-    padding: 7px 0; color: var(--accent);
-  }
-  .contact svg { width: 17px; height: 17px; fill: currentColor; color: var(--accent); flex: 0 0 auto; }
-  .contact a { color: var(--accent); overflow-wrap: anywhere; }
-  .contact a:hover { color: var(--accent-dark); }
-  .contact .place { color: var(--muted); font-weight: 400; font-size: 13px; }
-  .contact .place svg { color: var(--faint); }
+  .links { display: flex; flex-direction: column; gap: 10px; margin: 26px 0 0; padding: 0; list-style: none; font-size: 14px; font-weight: 500; }
+  .links li { display: flex; align-items: center; gap: 9px; }
+  .links a { overflow-wrap: anywhere; }
+  .links svg { width: 16px; height: 16px; fill: currentColor; color: var(--faint); flex: 0 0 auto; }
   .copy {
-    margin-left: auto; flex: 0 0 auto; cursor: pointer;
-    font-family: var(--sans); font-size: 10.5px; font-weight: 500;
-    letter-spacing: .05em; text-transform: uppercase;
+    margin-left: auto; cursor: pointer; font-family: var(--sans); font-size: 11px; font-weight: 500;
+    letter-spacing: .04em; text-transform: uppercase;
     color: var(--muted); background: var(--chip);
-    border: 1px solid var(--rule); border-radius: 4px; padding: 2px 7px;
+    border: 1px solid var(--rule); border-radius: 4px; padding: 1px 7px;
   }
   .copy:hover { color: var(--accent); border-color: var(--accent); }
-  .copy.done { color: #fff; background: var(--accent); border-color: var(--accent); }
+  .copy.done { color: var(--bg); background: var(--accent); border-color: var(--accent); }
 
-  /* ---------- collaboration topics ---------- */
-  .topics { list-style: none; padding: 0; margin: 12px 0 16px; }
-  .topics li { position: relative; padding-left: 22px; margin-bottom: 10px; font-size: 15.5px; }
-  .topics li::before { content: "◆"; position: absolute; left: 0; top: 2px; font-size: 11px; color: var(--accent); }
+  .interests { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+  .interests li { font-size: 13px; color: var(--muted); background: var(--chip); border-radius: 999px; padding: 3px 12px; }
 
-  /* ---------- collaboration callout ---------- */
-  .collab {
-    margin: 44px 0 8px; padding: 22px 26px;
-    background: var(--accent-soft);
-    border-left: 4px solid var(--accent); border-radius: 6px;
+  /* ---------- sections: label rail + content ---------- */
+  section {
+    display: grid; grid-template-columns: 280px 1fr; gap: 48px;
+    padding: 40px 0; border-top: 1px solid var(--rule);
   }
-  .collab h2 { border: 0; margin: 0 0 8px; padding: 0; font-size: 20px; }
-  .collab p { margin: 0 0 10px; font-size: 15.5px; }
-  .collab p:last-child { margin-bottom: 0; }
-
-  /* ---------- sections ---------- */
-  section { margin-top: 52px; }
+  header + section { margin-top: 36px; }
   h2 {
-    font-family: var(--serif); font-weight: 600; font-size: 23px;
-    margin: 0 0 18px; padding-bottom: 8px; border-bottom: 1px solid var(--rule);
+    font-family: var(--serif); font-weight: 600; font-size: 22px;
+    margin: 0; line-height: 1.3;
   }
-
-  /* news */
-  .news { list-style: none; padding: 0; margin: 0; }
-  .news li { display: grid; grid-template-columns: 96px 1fr; gap: 16px; padding: 7px 0; font-size: 15.5px; }
-  .news time { font-family: var(--sans); font-size: 14px; color: var(--faint); padding-top: 3px; white-space: nowrap; }
+  .entries { list-style: none; margin: 0; padding: 0; }
+  .entry { padding: 0 0 26px; }
+  .entry:last-child { padding-bottom: 0; }
+  .entry-head { display: flex; justify-content: space-between; align-items: baseline; gap: 6px 20px; flex-wrap: wrap; }
+  .entry-title { font-weight: 600; font-size: 16.5px; line-height: 1.45; margin: 0; }
+  .entry-title a { color: var(--text); }
+  .entry-title a:hover { color: var(--accent); }
+  .org { color: var(--muted); font-weight: 400; }
+  .when { font-size: 14px; color: var(--faint); white-space: nowrap; }
+  .desc { margin: 4px 0 0; font-size: 15px; color: var(--muted); }
 
   /* publications */
-  .pub { display: grid; grid-template-columns: 120px 1fr; gap: 22px; padding: 18px 0; border-bottom: 1px dashed var(--rule); }
-  .pub:last-child { border-bottom: 0; }
-  .venue {
-    align-self: start; text-align: center;
-    font-family: var(--sans); font-size: 12.5px; font-weight: 600; letter-spacing: .02em;
-    color: #fff; background: var(--accent); border-radius: 4px; padding: 5px 6px; line-height: 1.3;
+  .tag {
+    display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .03em;
+    color: var(--accent); background: var(--accent-soft); border-radius: 4px; padding: 2px 8px; margin-bottom: 8px;
   }
-  .venue.muted { background: var(--faint); }
-  .pub-title { font-weight: 600; font-size: 17px; line-height: 1.4; margin: 0 0 4px; }
-  .pub-title a { color: var(--text); }
-  .pub-title a:hover { color: var(--accent); }
-  .authors { margin: 0; color: var(--muted); font-size: 15px; }
-  .authors .me { color: var(--text); font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-  .pub-venue { margin: 2px 0 0; font-style: italic; font-size: 14.5px; }
-  .tldr { margin: 8px 0 0; font-size: 15px; }
-  .pub-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .tag.soon { color: var(--faint); background: var(--chip); }
+  .authors { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
+  .me { color: var(--text); font-weight: 600; }
+  .pub-venue { margin: 2px 0 0; font-style: italic; font-size: 14.5px; color: var(--muted); }
+  .tldr { margin: 10px 0 0; font-size: 15px; }
+  .pub-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
   .btn {
-    font-family: var(--sans); font-size: 12.5px; font-weight: 500; letter-spacing: .03em; text-transform: uppercase;
+    font-family: var(--sans); font-size: 12.5px; font-weight: 500;
     color: var(--text); background: transparent;
-    border: 1px solid var(--rule); border-radius: 4px; padding: 3px 10px; cursor: pointer; line-height: 1.5;
+    border: 1px solid var(--rule); border-radius: 999px; padding: 3px 12px; cursor: pointer; line-height: 1.5;
   }
   .btn:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .btn[aria-expanded="true"] { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
   .abstract {
-    margin-top: 12px; padding: 14px 18px; font-size: 14.5px;
-    background: var(--card); border: 1px solid var(--rule); border-radius: 6px;
+    margin-top: 12px; padding: 14px 18px; font-size: 14.5px; color: var(--muted);
+    border-left: 3px solid var(--accent); background: var(--accent-soft); border-radius: 0 6px 6px 0;
   }
-  .equal { font-family: var(--sans); font-size: 13px; color: var(--faint); margin-top: 6px; }
+  .equal { font-size: 13px; color: var(--faint); margin: 8px 0 0; }
 
-  /* experience */
-  .timeline { list-style: none; padding: 0; margin: 0; }
-  .timeline li { display: grid; grid-template-columns: 1fr auto; gap: 4px 20px; padding: 12px 0; }
-  .timeline .role { font-weight: 600; }
-  .timeline .org { color: var(--muted); }
-  .timeline .when { font-family: var(--sans); font-size: 14px; color: var(--faint); white-space: nowrap; padding-top: 3px; }
-  .timeline .desc { grid-column: 1 / -1; font-size: 15px; margin: 0; }
-
-  footer {
-    max-width: 860px; margin: 40px auto 0; padding: 24px;
-    border-top: 1px solid var(--rule);
-    font-family: var(--sans); font-size: 13px; color: var(--faint); text-align: center;
-  }
+  footer { padding: 28px 0 40px; border-top: 1px solid var(--rule); font-size: 13px; color: var(--faint); }
 
   /* ---------- responsive ---------- */
-  @media (max-width: 720px) {
-    body { font-size: 16px; }
+  @media (max-width: 760px) {
+    .wrap { padding: 0 16px; }
     .nav-links { display: none; }
-    main { padding-top: 32px; }
-    .intro { grid-template-columns: 1fr; gap: 24px; }
-    .photo-col { order: -1; display: flex; flex-direction: column; align-items: center; }
-    .photo, .photo-fallback { width: 180px; height: 180px; }
-    h1 { font-size: 28px; }
-    .lead { font-size: 18px; }
-    .contact { width: 100%; max-width: 330px; font-size: 14px; }
-    .hero { padding: 28px 0 32px; }
-    .pub { grid-template-columns: 1fr; gap: 10px; }
-    .venue { justify-self: start; padding: 3px 10px; }
-    .news li { grid-template-columns: 1fr; gap: 0; }
-    .timeline li { grid-template-columns: 1fr; }
+    header { padding: 36px 0 8px; }
+    .intro { grid-template-columns: 1fr; gap: 20px; }
+    .photo, .photo-fallback { width: 140px; height: 140px; }
+    .links { margin-top: 18px; }
+    h1 { font-size: 34px; }
+    .lead { font-size: 16.5px; }
+    section { grid-template-columns: 1fr; gap: 18px; padding: 32px 0; }
+    header + section { margin-top: 24px; }
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav-inner">
+  <div class="wrap nav-inner">
     <a class="nav-name" href="#">Elitsa Yotkova</a>
     <div class="nav-links">
-      <a href="#collaborate">Collaborate</a>
-      <a href="#news">News</a>
       <a href="#publications">Publications</a>
+      <a href="#teaching">Teaching</a>
       <a href="#experience">Experience</a>
+      <a href="#honors">Honors</a>
     </div>
   </div>
 </nav>
 
-<div class="hero">
-  <div class="hero-inner">
+<main class="wrap">
 
   <!-- ================= INTRO ================= -->
-  <div class="intro">
-    <div>
-      <p class="lead">
-        Hi! I'm Elitsa. I'm interested in the <strong>robustness of LLM judges</strong>, evaluation,
-        and the broader questions of frontier AI safety.
-      </p>
+  <header>
+    <div class="intro">
+      <div>
+        <img class="photo" src="assets/img/profile.jpg" alt="Photo of Elitsa Yotkova"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="photo-fallback" aria-hidden="true">EY</div>
+        <ul class="links">
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 5-8-5V6l8 5 8-5z"/></svg>
+            <a href="mailto:eyotkova@g.fmi.uni-sofia.bg">eyotkova@g.fmi.uni-sofia.bg</a>
+            <button class="copy" type="button" data-copy="eyotkova@g.fmi.uni-sofia.bg" title="Copy email address">Copy</button>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.84 3.92A8.96 8.96 0 0 1 12 9.99c2.93 0 5.53 1.4 7.17 3.43L24 9.5z"/></svg>
+            <a href="https://scholar.google.com/citations?user=-Y7pNIsAAAAJ&amp;hl=en" target="_blank" rel="noopener">Scholar</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+            <a href="https://www.linkedin.com/in/elitza-yotkova/" target="_blank" rel="noopener">LinkedIn</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3"/></svg>
+            <a href="https://github.com/ElitsaY" target="_blank" rel="noopener">GitHub</a>
+          </li>
+        </ul>
+      </div>
 
-      <p class="label">Current focus</p>
-      <ul class="facts">
-        <li>
-          <strong>Robustness of LLM and agent judges:</strong> when they break, how they can be
-          manipulated, and how to tell when a judgment shouldn't be trusted.
-        </li>
-        <li>
-          <strong>Fine-grained correctness:</strong> a single “correct / incorrect” label hides a lot,
-          so I build taxonomies, NLI-based metrics and benchmarks that expose those failures instead of averaging them away.
-        </li>
-        <li>
+      <div>
+        <h1>Elitsa Yotkova</h1>
+        <p class="subtitle">MSc student, Information Retrieval &amp; Knowledge Discovery · Sofia University</p>
+
+        <p class="lead">
+          Hi! I'm Elitsa. I'm interested in the <strong>robustness of LLM judges</strong>, evaluation,
+          and the broader questions of frontier AI safety.
+        </p>
+        <p class="lead">
           At Sofia University I work with
           <a href="https://scholar.google.com/citations?user=CJcR_T8AAAAJ&amp;hl=en" target="_blank" rel="noopener">Dr. Dimitar Dimitrov</a>,
           <a href="https://scholar.google.com/citations?user=o5YAI9wAAAAJ&amp;hl=bg" target="_blank" rel="noopener">Prof. Ivan Koychev</a> and
           <a href="https://scholar.google.com/citations?user=DfXsKZ4AAAAJ&amp;hl=en" target="_blank" rel="noopener">Prof. Preslav Nakov</a> (MBZUAI).
-        </li>
-        <li>
-          Previously a software engineering intern at <strong>Google</strong> (Zurich) and <strong>Uber</strong> (Amsterdam).
-        </li>
-      </ul>
+          Previously a software engineering intern at <strong>Google</strong> (Zurich) and <strong>Uber</strong> (Amsterdam &amp; Sofia).
+        </p>
 
-      <p class="label">Interests</p>
-      <ul class="interests" aria-label="Research interests">
-        <li>LLM-as-a-Judge</li>
-        <li>Agent-as-a-Judge</li>
-        <li>Robustness of evaluators</li>
-        <li>Benchmark design</li>
-        <li>Scalable oversight</li>
-        <li>Jailbreaks</li>
-      </ul>
-    </div>
-
-    <div class="photo-col">
-      <div class="photo-wrap">
-        <img class="photo" src="assets/img/profile.jpg" alt="Photo of Elitsa Yotkova"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="photo-fallback" aria-hidden="true">EY</div>
+        <ul class="interests" aria-label="Research interests">
+          <li>LLM-as-a-Judge</li>
+          <li>Agent-as-a-Judge</li>
+          <li>Robustness of evaluators</li>
+          <li>Benchmark design</li>
+        </ul>
       </div>
-
-      <h1>Elitsa Yotkova</h1>
-      <p class="subtitle">
-        MSc Student in Information Retrieval and AI @ Sofia University<br>
-        ex-Google, Uber
-      </p>
-
-      <ul class="contact">
-        <li>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 5-8-5V6l8 5 8-5z"/></svg>
-          <a href="mailto:eyotkova@g.fmi.uni-sofia.bg">eyotkova@g.fmi.uni-sofia.bg</a>
-          <button class="copy" type="button" data-copy="eyotkova@g.fmi.uni-sofia.bg" title="Copy email address">Copy</button>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.84 3.92A8.96 8.96 0 0 1 12 9.99c2.93 0 5.53 1.4 7.17 3.43L24 9.5z"/></svg>
-          <a href="https://scholar.google.com/citations?user=-Y7pNIsAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
-          <a href="https://www.linkedin.com/in/elitza-yotkova/" target="_blank" rel="noopener">LinkedIn</a>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3"/></svg>
-          <a href="https://github.com/ElitsaY" target="_blank" rel="noopener">GitHub</a>
-        </li>
-        <li class="place">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
-          <span>FMI, Sofia University · Sofia, Bulgaria</span>
-        </li>
-      </ul>
     </div>
-  </div>
-
-  </div><!-- /hero-inner -->
-</div><!-- /hero -->
-
-<main>
-
-  <!-- ================= COLLABORATION ================= -->
-  <div class="collab" id="collaborate">
-    <h2>Open for collaboration</h2>
-    <p>
-      Over the next couple of months I'll be working on the <strong>robustness of LLM judges and agent judges</strong>,
-      and I'd be more than happy to collaborate. Concretely, these are the questions I'd like to attack:
-    </p>
-    <ul class="topics">
-      <li><strong>What breaks a judge?</strong> Position, verbosity and self-preference bias, prompt perturbations, and answers written to be persuasive rather than correct.</li>
-      <li><strong>Agent judges.</strong> When judging becomes multi-step and tool-using, where do the errors actually enter, and does more scaffolding help or just hide the mistake?</li>
-      <li><strong>Knowing when not to trust a verdict.</strong> Calibration and abstention: a judge that says “I'm not sure” is more useful than one that is confidently wrong.</li>
-      <li><strong>Benchmarks that expose these failures</strong> instead of averaging them away.</li>
-    </ul>
-    <p>
-      If any of this sounds interesting, email me at
-      <a href="mailto:eyotkova@g.fmi.uni-sofia.bg?subject=Collaboration%3A%20robustness%20of%20LLM%20judges">eyotkova@g.fmi.uni-sofia.bg</a>
-      and tell me <em>why you want to work on the robustness of LLM judges</em>.
-      Students looking for a thesis topic in this direction are welcome too.
-    </p>
-  </div>
-
-  <!-- ================= NEWS ================= -->
-  <section id="news">
-    <h2>News</h2>
-    <ul class="news">
-      <li>
-        <time datetime="2026-09">Sep 2026</time>
-        <span><a href="https://arxiv.org/abs/2609.01369" target="_blank" rel="noopener"><em>How Correct Is Your Answer?</em></a> was accepted to <strong>Findings of EMNLP 2026</strong>! The preprint is now on arXiv.</span>
-      </li>
-      <li>
-        <time datetime="2026-08">Aug 2026</time>
-        <span><em>Behind the Label</em>, on diagnosing LLM judge errors at the component level, was submitted to the <a href="https://judge2026.github.io/" target="_blank" rel="noopener">JUDGe workshop @ NeurIPS 2026</a>.</span>
-      </li>
-      <li>
-        <time datetime="2026-04">Apr 2026</time>
-        <span>Our system paper on detecting LLM-generated code appeared at <strong>SemEval 2026</strong> (co-located with ACL), and the line-level code-vs-text dataset behind it earned a <a href="https://www.kaggle.com/datasets/violetakastreva/line-level-code-vs-text-classification-dataset" target="_blank" rel="noopener">Silver Medal on Kaggle</a>.</span>
-      </li>
-    </ul>
-  </section>
+  </header>
 
   <!-- ================= PUBLICATIONS ================= -->
   <section id="publications">
     <h2>Publications</h2>
-
-    <article class="pub">
-      <div class="venue">EMNLP<br>Findings 2026</div>
-      <div>
-        <p class="pub-title"><a href="https://arxiv.org/abs/2609.01369" target="_blank" rel="noopener">How Correct Is Your Answer? A Semantic Correctness Framework for Open QA Evaluation</a></p>
+    <ul class="entries">
+      <li class="entry">
+        <span class="tag">EMNLP Findings 2026</span>
+        <p class="entry-title"><a href="https://arxiv.org/abs/2609.01369" target="_blank" rel="noopener">How Correct Is Your Answer? A Semantic Correctness Framework for Open QA Evaluation</a></p>
         <p class="authors"><span class="me">Elitsa Yotkova</span>*, Violeta Kastreva*, Petar Velkov, Hristo Boyanov, Dimitar Dimitrov, Ivan Koychev, Preslav Nakov</p>
         <p class="pub-venue">Findings of the Association for Computational Linguistics: EMNLP 2026</p>
         <p class="tldr">An eight-class taxonomy of how open-ended answers can be right or wrong, two new datasets, and CAP, an NLI-based metric that respects that ordering better than existing judges and similarity metrics.</p>
         <div class="pub-links">
-          <button class="btn" type="button" aria-expanded="false" data-target="abs-cap">Abs</button>
+          <button class="btn" type="button" aria-expanded="false" data-target="abs-cap">Abstract</button>
           <a class="btn" href="https://arxiv.org/abs/2609.01369" target="_blank" rel="noopener">arXiv</a>
           <a class="btn" href="https://arxiv.org/pdf/2609.01369" target="_blank" rel="noopener">PDF</a>
         </div>
@@ -426,18 +270,16 @@
           CAP outperforms established baselines.
         </div>
         <p class="equal">* Equal contribution</p>
-      </div>
-    </article>
+      </li>
 
-    <article class="pub">
-      <div class="venue">SemEval<br>2026</div>
-      <div>
-        <p class="pub-title"><a href="https://aclanthology.org/2026.semeval-1.275.pdf" target="_blank" rel="noopener">FMI_SU_Yotkova_Kastreva at SemEval-2026 Task 13: Lightweight Detection of LLM-Generated Code via Stylometric Signals</a></p>
+      <li class="entry">
+        <span class="tag">SemEval 2026</span>
+        <p class="entry-title"><a href="https://aclanthology.org/2026.semeval-1.275.pdf" target="_blank" rel="noopener">FMI_SU_Yotkova_Kastreva at SemEval-2026 Task 13: Lightweight Detection of LLM-Generated Code via Stylometric Signals</a></p>
         <p class="authors"><span class="me">Elitsa Yotkova</span>*, Violeta Kastreva*, Dimitar Dimitrov, Ivan Koychev, Preslav Nakov</p>
         <p class="pub-venue">Proceedings of the 20th International Workshop on Semantic Evaluation (SemEval 2026), co-located with ACL</p>
         <p class="tldr">A CPU-only detector of machine-generated code, built from length-robust stylometric features and a shallow decision tree, that beats fine-tuned code encoders such as GraphCodeBERT by +0.37 macro-F1.</p>
         <div class="pub-links">
-          <button class="btn" type="button" aria-expanded="false" data-target="abs-semeval">Abs</button>
+          <button class="btn" type="button" aria-expanded="false" data-target="abs-semeval">Abstract</button>
           <a class="btn" href="https://aclanthology.org/2026.semeval-1.275.pdf" target="_blank" rel="noopener">PDF</a>
           <a class="btn" href="https://github.com/violeta-kastreva/SemEvalTask13-SubtaskA" target="_blank" rel="noopener">Code</a>
           <a class="btn" href="https://www.kaggle.com/datasets/violetakastreva/line-level-code-vs-text-classification-dataset" target="_blank" rel="noopener">Dataset</a>
@@ -454,62 +296,85 @@
           pretrained models.
         </div>
         <p class="equal">* Equal contribution</p>
-      </div>
-    </article>
-
-    <article class="pub">
-      <div class="venue muted">Under<br>review</div>
-      <div>
-        <p class="pub-title">Behind the Label: Diagnosing LLM Judge Errors with Component-Level Judgments</p>
-        <p class="authors">Petar Velkov, Violeta Kastreva, <span class="me">Elitsa Yotkova</span></p>
-        <p class="pub-venue">Submitted to <a href="https://judge2026.github.io/" target="_blank" rel="noopener">JUDGe Workshop @ NeurIPS 2026</a></p>
-        <p class="tldr">Splitting answer-correctness judgments into component-level decisions to find out <em>where</em> LLM judges make systematic errors.</p>
-      </div>
-    </article>
+      </li>
+    </ul>
   </section>
 
-  <!-- ================= EXPERIENCE ================= -->
-  <section id="experience">
-    <h2>Experience</h2>
-    <ul class="timeline">
-      <li>
-        <div><span class="role">Software Engineering Intern</span> · <span class="org">Google, Search · Zurich</span></div>
-        <div class="when">Jun – Aug 2026</div>
-        <p class="desc">Evaluated the robustness of a citation-bias autorater for AI Mode across three Gemini models, showed that a heuristic baseline doesn't generalize, and built a lightweight embedding-based autorater with over 99% precision.</p>
+  <!-- ================= TEACHING ================= -->
+  <section id="teaching">
+    <h2>Teaching</h2>
+    <ul class="entries">
+      <li class="entry">
+        <div class="entry-head">
+          <p class="entry-title"><a href="https://elitsay.github.io/AI_FMI_course/docs/" target="_blank" rel="noopener">Intelligent Systems / Artificial Intelligence</a></p>
+        </div>
+        <p class="desc">Sofia University, FMI · final-year BSc students</p>
+        <p class="desc">Interactive class notes for the labs: search, constraint satisfaction, genetic algorithms, games and an introduction to machine learning.</p>
+        <div class="pub-links">
+          <a class="btn" href="https://elitsay.github.io/AI_FMI_course/docs/" target="_blank" rel="noopener">Course page</a>
+          <a class="btn" href="https://github.com/ElitsaY/AI_FMI_course" target="_blank" rel="noopener">Notebooks</a>
+        </div>
       </li>
-      <li>
-        <div><span class="role">Research Assistant</span> · <span class="org">Sofia University, SUMMIT project</span></div>
-        <div class="when">Nov 2025 – May 2026</div>
-        <p class="desc">Led the semantic-correctness framework for open QA evaluation that became our EMNLP Findings paper.</p>
+      <li class="entry">
+        <div class="entry-head">
+          <p class="entry-title">Information Retrieval</p>
+        </div>
+        <p class="desc">Sofia University, FMI · MSc students in Information Retrieval &amp; Knowledge Discovery</p>
+        <div class="pub-links"><span class="tag soon">Course page coming soon</span></div>
       </li>
-      <li>
-        <div><span class="role">Software Engineering Intern</span> · <span class="org">Uber · Amsterdam</span></div>
-        <div class="when">Feb – Aug 2025</div>
-        <p class="desc">Built an end-to-end observability dashboard: a Go API and a data pipeline processing millions of records.</p>
-      </li>
-      <li>
-        <div><span class="role">Teaching Assistant</span> · <span class="org">Sofia University, FMI</span></div>
-        <div class="when">2022 – present</div>
+      <li class="entry">
+        <div class="entry-head">
+          <p class="entry-title">Teaching Assistant <span class="org">· Sofia University, FMI</span></p>
+          <span class="when">2022 – present</span>
+        </div>
         <p class="desc">Six courses and 775+ students, including Data Structures &amp; Algorithms and Artificial Intelligence. I also supervise student NLP projects.</p>
       </li>
     </ul>
   </section>
 
-  <!-- ================= EDUCATION & HONORS ================= -->
-  <section id="education">
-    <h2>Education &amp; Honors</h2>
-    <ul class="timeline">
-      <li>
-        <div><span class="role">MSc, Information Retrieval &amp; Knowledge Discovery</span> · <span class="org">Sofia University “St. Kliment Ohridski”</span></div>
-        <div class="when">2025 – 2027 (exp.)</div>
+  <!-- ================= EXPERIENCE ================= -->
+  <section id="experience">
+    <h2>Experience</h2>
+    <ul class="entries">
+      <li class="entry">
+        <div class="entry-head">
+          <p class="entry-title">Software Engineering Intern <span class="org">· Google, Search · Zurich</span></p>
+          <span class="when">Jun – Aug 2026</span>
+        </div>
+        <p class="desc">Evaluated the robustness of a citation-bias autorater for AI Mode across three Gemini models, showed that a heuristic baseline doesn't generalize, and built a lightweight embedding-based autorater with over 99% precision.</p>
       </li>
-      <li>
-        <div><span class="role">2nd Place</span> · <span class="org">National Collegiate Programming Contest</span></div>
-        <div class="when">2024</div>
+      <li class="entry">
+        <div class="entry-head">
+          <p class="entry-title">Research Assistant <span class="org">· Sofia University, SUMMIT project</span></p>
+          <span class="when">Nov 2025 – May 2026</span>
+        </div>
+        <p class="desc">Led the semantic-correctness framework for open QA evaluation that became our EMNLP Findings paper.</p>
       </li>
-      <li>
-        <div><span class="role"><a href="https://www.progress.com/social-responsibility/women-in-stem-scholarships/recipients" target="_blank" rel="noopener">Women in Tech Scholarship</a></span> · <span class="org">Progress Software</span></div>
-        <div class="when">2023</div>
+      <li class="entry">
+        <div class="entry-head">
+          <p class="entry-title">Software Engineering Intern <span class="org">· Uber · Amsterdam &amp; Sofia</span></p>
+          <span class="when">Feb – Aug 2025</span>
+        </div>
+        <p class="desc">Built an end-to-end observability dashboard: a Go API and a data pipeline processing millions of records.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ================= HONORS ================= -->
+  <section id="honors">
+    <h2>Honors</h2>
+    <ul class="entries">
+      <li class="entry">
+        <div class="entry-head">
+          <p class="entry-title">2nd Place <span class="org">· National Collegiate Programming Contest</span></p>
+          <span class="when">2024</span>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="entry-head">
+          <p class="entry-title"><a href="https://www.progress.com/social-responsibility/women-in-stem-scholarships/recipients" target="_blank" rel="noopener">Women in Tech Scholarship</a> <span class="org">· Progress Software</span></p>
+          <span class="when">2023</span>
+        </div>
       </li>
     </ul>
   </section>
@@ -517,7 +382,7 @@
 </main>
 
 <footer>
-  © 2026 Elitsa Yotkova · Hosted on GitHub Pages
+  <div class="wrap">© 2026 Elitsa Yotkova</div>
 </footer>
 
 <script>
