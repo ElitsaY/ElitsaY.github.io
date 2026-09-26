@@ -22,6 +22,10 @@
     --accent-dark: #1d4f6d;
     --accent-soft: #eef5f9;
     --chip: #f3f5f7;
+    --blue: #2b6a8f;  --blue-soft: #e6f0f7;
+    --sage: #3d7a66;  --sage-soft: #e4f1ea;
+    --gold: #946a14;  --gold-soft: #fbf0d9;
+    --coral: #b0513c; --coral-soft: #fbe8e1;
     --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
     --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   }
@@ -36,6 +40,10 @@
       --accent-dark: #a9d2e8;
       --accent-soft: #1b252d;
       --chip: #1e252c;
+      --blue: #8cc0de;  --blue-soft: #1a2833;
+      --sage: #8fcbb5;  --sage-soft: #182a24;
+      --gold: #e3c27a;  --gold-soft: #2c2616;
+      --coral: #eba08d; --coral-soft: #2e1e1a;
     }
   }
 
@@ -81,6 +89,7 @@
     width: 200px; height: 200px; border-radius: 50%;
     object-fit: cover; object-position: center 20%; display: block;
     background: var(--chip);
+    box-shadow: 0 0 0 5px var(--bg), 0 0 0 8px var(--blue-soft);
   }
   .photo-fallback {
     display: none; align-items: center; justify-content: center;
@@ -97,18 +106,10 @@
   .links { display: flex; flex-direction: column; gap: 10px; margin: 26px 0 0; padding: 0; list-style: none; font-size: 14px; font-weight: 500; }
   .links li { display: flex; align-items: center; gap: 9px; }
   .links a { overflow-wrap: anywhere; }
-  .links svg { width: 16px; height: 16px; fill: currentColor; color: var(--faint); flex: 0 0 auto; }
-  .copy {
-    margin-left: auto; cursor: pointer; font-family: var(--sans); font-size: 11px; font-weight: 500;
-    letter-spacing: .04em; text-transform: uppercase;
-    color: var(--muted); background: var(--chip);
-    border: 1px solid var(--rule); border-radius: 4px; padding: 1px 7px;
-  }
-  .copy:hover { color: var(--accent); border-color: var(--accent); }
-  .copy.done { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+  .links svg { width: 16px; height: 16px; fill: currentColor; color: var(--blue); flex: 0 0 auto; }
 
   .interests { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
-  .interests li { font-size: 13px; color: var(--muted); background: var(--chip); border-radius: 999px; padding: 3px 12px; }
+  .interests li { font-size: 13px; font-weight: 500; color: var(--blue); background: var(--blue-soft); border-radius: 999px; padding: 3px 12px; }
 
   /* ---------- sections: label rail + content ---------- */
   section {
@@ -120,6 +121,15 @@
     font-family: var(--serif); font-weight: 600; font-size: 22px;
     margin: 0; line-height: 1.3;
   }
+  h2::after {
+    content: ""; display: block; width: 32px; height: 3px; border-radius: 2px;
+    margin-top: 10px; background: var(--c, var(--accent));
+  }
+  #publications { --c: var(--blue); --c-soft: var(--blue-soft); }
+  #teaching     { --c: var(--sage); --c-soft: var(--sage-soft); }
+  #experience   { --c: var(--gold); --c-soft: var(--gold-soft); }
+  #honors       { --c: var(--coral); --c-soft: var(--coral-soft); }
+  .when { color: var(--c, var(--faint)); }
   .entries { list-style: none; margin: 0; padding: 0; }
   .entry { padding: 0 0 26px; }
   .entry:last-child { padding-bottom: 0; }
@@ -128,27 +138,37 @@
   .entry-title a { color: var(--text); }
   .entry-title a:hover { color: var(--accent); }
   .org { color: var(--muted); font-weight: 400; }
-  .when { font-size: 14px; color: var(--faint); white-space: nowrap; }
+  .when { font-size: 14px; white-space: nowrap; }
   .desc { margin: 4px 0 0; font-size: 15px; color: var(--muted); }
+  .has-logo { display: grid; grid-template-columns: 48px 1fr; gap: 16px; align-items: start; }
+  .logo {
+    width: 48px; height: 48px; border-radius: 10px; margin-top: 2px;
+    display: flex; align-items: center; justify-content: center; padding: 6px;
+    background: #fff; border: 1px solid var(--rule);
+  }
+  .logo.roomy { padding: 10px; }
+  .logo.dark { background: #000; border-color: #000; padding: 5px; }
+  .logo.dark img { filter: invert(1); }
+  .logo img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
 
   /* publications */
   .tag {
     display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .03em;
     color: var(--accent); background: var(--accent-soft); border-radius: 4px; padding: 2px 8px; margin-bottom: 8px;
   }
-  .tag.soon { color: var(--faint); background: var(--chip); }
+  .tag.semeval { color: var(--sage); background: var(--sage-soft); }
+  .tag.soon { color: var(--gold); background: var(--gold-soft); }
   .authors { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
   .me { color: var(--text); font-weight: 600; }
   .pub-venue { margin: 2px 0 0; font-style: italic; font-size: 14.5px; color: var(--muted); }
-  .tldr { margin: 10px 0 0; font-size: 15px; }
   .pub-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
   .btn {
     font-family: var(--sans); font-size: 12.5px; font-weight: 500;
     color: var(--text); background: transparent;
     border: 1px solid var(--rule); border-radius: 999px; padding: 3px 12px; cursor: pointer; line-height: 1.5;
   }
-  .btn:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
-  .btn[aria-expanded="true"] { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+  .btn:hover { border-color: var(--c, var(--accent)); color: var(--c, var(--accent)); text-decoration: none; }
+  .btn[aria-expanded="true"] { border-color: var(--c, var(--accent)); color: var(--c, var(--accent)); background: var(--c-soft, var(--accent-soft)); }
   .abstract {
     margin-top: 12px; padding: 14px 18px; font-size: 14.5px; color: var(--muted);
     border-left: 3px solid var(--accent); background: var(--accent-soft); border-radius: 0 6px 6px 0;
@@ -199,7 +219,6 @@
           <li>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 5-8-5V6l8 5 8-5z"/></svg>
             <a href="mailto:eyotkova@g.fmi.uni-sofia.bg">eyotkova@g.fmi.uni-sofia.bg</a>
-            <button class="copy" type="button" data-copy="eyotkova@g.fmi.uni-sofia.bg" title="Copy email address">Copy</button>
           </li>
           <li>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.84 3.92A8.96 8.96 0 0 1 12 9.99c2.93 0 5.53 1.4 7.17 3.43L24 9.5z"/></svg>
@@ -251,7 +270,6 @@
         <p class="entry-title"><a href="https://arxiv.org/abs/2609.01369" target="_blank" rel="noopener">How Correct Is Your Answer? A Semantic Correctness Framework for Open QA Evaluation</a></p>
         <p class="authors"><span class="me">Elitsa Yotkova</span>*, Violeta Kastreva*, Petar Velkov, Hristo Boyanov, Dimitar Dimitrov, Ivan Koychev, Preslav Nakov</p>
         <p class="pub-venue">Findings of the Association for Computational Linguistics: EMNLP 2026</p>
-        <p class="tldr">An eight-class taxonomy of how open-ended answers can be right or wrong, two new datasets, and CAP, an NLI-based metric that respects that ordering better than existing judges and similarity metrics.</p>
         <div class="pub-links">
           <button class="btn" type="button" aria-expanded="false" data-target="abs-cap">Abstract</button>
           <a class="btn" href="https://arxiv.org/abs/2609.01369" target="_blank" rel="noopener">arXiv</a>
@@ -273,11 +291,10 @@
       </li>
 
       <li class="entry">
-        <span class="tag">SemEval 2026</span>
+        <span class="tag semeval">SemEval 2026</span>
         <p class="entry-title"><a href="https://aclanthology.org/2026.semeval-1.275.pdf" target="_blank" rel="noopener">FMI_SU_Yotkova_Kastreva at SemEval-2026 Task 13: Lightweight Detection of LLM-Generated Code via Stylometric Signals</a></p>
         <p class="authors"><span class="me">Elitsa Yotkova</span>*, Violeta Kastreva*, Dimitar Dimitrov, Ivan Koychev, Preslav Nakov</p>
         <p class="pub-venue">Proceedings of the 20th International Workshop on Semantic Evaluation (SemEval 2026), co-located with ACL</p>
-        <p class="tldr">A CPU-only detector of machine-generated code, built from length-robust stylometric features and a shallow decision tree, that beats fine-tuned code encoders such as GraphCodeBERT by +0.37 macro-F1.</p>
         <div class="pub-links">
           <button class="btn" type="button" aria-expanded="false" data-target="abs-semeval">Abstract</button>
           <a class="btn" href="https://aclanthology.org/2026.semeval-1.275.pdf" target="_blank" rel="noopener">PDF</a>
@@ -336,26 +353,35 @@
   <section id="experience">
     <h2>Experience</h2>
     <ul class="entries">
-      <li class="entry">
-        <div class="entry-head">
-          <p class="entry-title">Software Engineering Intern <span class="org">· Google, Search · Zurich</span></p>
-          <span class="when">Jun – Aug 2026</span>
+      <li class="entry has-logo">
+        <span class="logo roomy"><img src="assets/img/logos/google.svg" alt="Google logo" loading="lazy"></span>
+        <div>
+          <div class="entry-head">
+            <p class="entry-title">Software Engineering Intern <span class="org">· Google, Search · Zurich</span></p>
+            <span class="when">Jun – Aug 2026</span>
+          </div>
+          <p class="desc">Evaluated the robustness of a citation-bias autorater for AI Mode across three Gemini models, showed that a heuristic baseline doesn't generalize, and built a lightweight embedding-based autorater with over 99% precision.</p>
         </div>
-        <p class="desc">Evaluated the robustness of a citation-bias autorater for AI Mode across three Gemini models, showed that a heuristic baseline doesn't generalize, and built a lightweight embedding-based autorater with over 99% precision.</p>
       </li>
-      <li class="entry">
-        <div class="entry-head">
-          <p class="entry-title">Research Assistant <span class="org">· Sofia University, SUMMIT project</span></p>
-          <span class="when">Nov 2025 – May 2026</span>
+      <li class="entry has-logo">
+        <span class="logo"><img src="assets/img/logos/sofia-university.png" alt="Sofia University logo" loading="lazy"></span>
+        <div>
+          <div class="entry-head">
+            <p class="entry-title">Research Assistant <span class="org">· Sofia University, SUMMIT project</span></p>
+            <span class="when">Nov 2025 – May 2026</span>
+          </div>
+          <p class="desc">Led the semantic-correctness framework for open QA evaluation that became our EMNLP Findings paper.</p>
         </div>
-        <p class="desc">Led the semantic-correctness framework for open QA evaluation that became our EMNLP Findings paper.</p>
       </li>
-      <li class="entry">
-        <div class="entry-head">
-          <p class="entry-title">Software Engineering Intern <span class="org">· Uber · Amsterdam &amp; Sofia</span></p>
-          <span class="when">Feb – Aug 2025</span>
+      <li class="entry has-logo">
+        <span class="logo dark"><img src="assets/img/logos/uber.svg" alt="Uber logo" loading="lazy"></span>
+        <div>
+          <div class="entry-head">
+            <p class="entry-title">Software Engineering Intern <span class="org">· Uber · Amsterdam &amp; Sofia</span></p>
+            <span class="when">Feb – Aug 2025</span>
+          </div>
+          <p class="desc">Built an end-to-end observability dashboard: a Go API and a data pipeline processing millions of records.</p>
         </div>
-        <p class="desc">Built an end-to-end observability dashboard: a Go API and a data pipeline processing millions of records.</p>
       </li>
     </ul>
   </section>
@@ -386,33 +412,6 @@
 </footer>
 
 <script>
-  document.querySelectorAll('.copy').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var value = btn.dataset.copy;
-      var done = function () {
-        btn.textContent = 'Copied';
-        btn.classList.add('done');
-        setTimeout(function () { btn.textContent = 'Copy'; btn.classList.remove('done'); }, 1600);
-      };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(value).then(done, fallback);
-      } else {
-        fallback();
-      }
-      function fallback() {
-        var ta = document.createElement('textarea');
-        ta.value = value;
-        ta.setAttribute('readonly', '');
-        ta.style.position = 'fixed';
-        ta.style.opacity = '0';
-        document.body.appendChild(ta);
-        ta.select();
-        try { document.execCommand('copy'); done(); } catch (e) { /* clipboard unavailable */ }
-        document.body.removeChild(ta);
-      }
-    });
-  });
-
   document.querySelectorAll('button[data-target]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var el = document.getElementById(btn.dataset.target);
