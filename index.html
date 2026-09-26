@@ -48,7 +48,7 @@
   }
 
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
   body {
     margin: 0;
     background: var(--bg);
@@ -192,7 +192,7 @@
   .course.soon { background: transparent; box-shadow: none; border: 1.5px dashed color-mix(in srgb, var(--faint) 55%, transparent); }
   .course-top { display: flex; align-items: center; gap: 12px; position: relative; }
   .course-meta { font-size: 13px; line-height: 1.4; color: var(--muted); }
-  .course-title { font-family: var(--serif); font-size: 22px; font-weight: 600; line-height: 1.25; margin: 4px 0 0; position: relative; max-width: 22ch; }
+  .course-title { font-family: var(--serif); font-size: 22px; font-weight: 600; line-height: 1.25; margin: 4px 0 0; position: relative; }
   .course-title a { color: var(--text); }
   .course-title a:hover { color: var(--sage); text-decoration: none; }
   .course-desc { margin: 0; font-size: 15px; color: var(--muted); position: relative; max-width: 42ch; }
@@ -222,9 +222,11 @@
   /* ---------- responsive ---------- */
   @media (max-width: 760px) {
     .courses { grid-template-columns: 1fr; }
-    .course-art { width: 120px; opacity: .4; }
+    .course-art { width: 96px; top: auto; bottom: 14px; right: 10px; opacity: .35; }
     .wrap { padding: 0 16px; }
-    .nav-links { display: none; }
+    .nav-inner { flex-wrap: wrap; row-gap: 6px; padding-top: 10px; padding-bottom: 8px; }
+    .nav-links { width: 100%; gap: 18px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; font-size: 14px; }
+    .nav-links::-webkit-scrollbar { display: none; }
     header { padding: 36px 0 8px; }
     .intro { grid-template-columns: 1fr; gap: 20px; }
     .photo, .photo-fallback { width: 140px; height: 140px; }
@@ -375,7 +377,6 @@
           <span class="course-meta">Sofia University, FMI<br>Final-year BSc</span>
         </div>
         <h3 class="course-title"><a href="https://elitsay.github.io/AI_FMI_course/docs/" target="_blank" rel="noopener">Intelligent Systems / Artificial Intelligence</a></h3>
-        <p class="course-desc">Interactive class notes for the labs.</p>
         <ul class="topics" aria-label="Lab topics">
           <li>Search</li><li>A*</li><li>ML</li><li>NLP</li>
         </ul>
