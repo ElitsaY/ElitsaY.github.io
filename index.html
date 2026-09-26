@@ -10,37 +10,38 @@
 <meta property="og:image" content="assets/img/profile.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #ffffff;
-    --text: #14171b;
-    --muted: #4c5157;
-    --faint: #7c838b;
-    --rule: #e3e7ea;
-    --accent: #4d7ea8;
-    --accent-dark: #375d7c;
-    --accent-soft: #eef4f8;
-    --teal: #5c9088;
-    --coral: #cf9470;
-    --amber: #d1ab68;
-    --chip: #f2f5f7;
-    --card: #fafbfc;
-    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --text: #1d1a1e;
+    --muted: #57505a;
+    --faint: #8b838f;
+    --rule: #ece2e7;
+    --accent: #a05a7c;
+    --accent-dark: #7d4360;
+    --accent-soft: #fbf1f5;
+    --chip: #f8f0f4;
+    --card: #fdfafb;
+    --wash-1: #fbeef4;
+    --wash-2: #f9f1f7;
+    --serif: "Poppins", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #17131f;
-      --text: #f3f0fa;
-      --muted: #b6adc9;
-      --faint: #8f87a3;
-      --rule: #362d47;
-      --accent: #9ec4dd;
-      --accent-dark: #7fb0c9;
-      --accent-soft: #221c30;
-      --chip: #241e33;
-      --card: #221c30;
+      --bg: #1a151b;
+      --text: #f4eef2;
+      --muted: #c0b3bd;
+      --faint: #978a94;
+      --rule: #372d38;
+      --accent: #e0a3bf;
+      --accent-dark: #efc2d6;
+      --accent-soft: #261e28;
+      --chip: #272029;
+      --card: #231d26;
+      --wash-1: #2b1f27;
+      --wash-2: #261e2a;
     }
   }
 
@@ -50,8 +51,8 @@
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font-family: var(--serif);
-    font-size: 18px;
+    font-family: var(--sans);
+    font-size: 16.5px;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
@@ -83,28 +84,20 @@
   /* ---------- hero with node-graph background ---------- */
   .hero {
     position: relative; overflow: hidden;
-    padding: 52px 0 40px;
+    padding: 56px 0 46px;
     background:
-      radial-gradient(60% 60% at 12% 0%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%),
-      radial-gradient(60% 60% at 92% 12%, color-mix(in srgb, var(--teal) 9%, transparent), transparent 70%);
+      radial-gradient(70% 90% at 78% 0%, var(--wash-1), transparent 62%),
+      radial-gradient(60% 80% at 8% 12%, var(--wash-2), transparent 60%),
+      linear-gradient(180deg, color-mix(in srgb, var(--wash-1) 45%, transparent), transparent 88%);
+    border-bottom: 1px solid var(--rule);
   }
-  .hero-graph {
-    position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;
-    -webkit-mask-image: radial-gradient(ellipse at center, transparent 20%, #000 78%);
-    mask-image: radial-gradient(ellipse at center, transparent 20%, #000 78%);
-  }
-  .hero-graph line { stroke: var(--accent); stroke-width: 1.2; opacity: .2; }
-  .hero-graph circle { fill: var(--accent); opacity: .3; }
-  .hero-graph circle.a { fill: var(--teal); }
-  .hero-graph circle.b { fill: var(--amber); }
-  .hero-graph circle.c { fill: var(--coral); }
   .hero-inner { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 24px; }
 
   /* ---------- header ---------- */
   .intro { display: grid; grid-template-columns: 1fr 250px; gap: 44px; align-items: start; }
   h1 {
     font-family: var(--serif); font-weight: 600;
-    font-size: 30px; line-height: 1.15; margin: 18px 0 4px; letter-spacing: -0.01em;
+    font-size: 27px; line-height: 1.2; margin: 18px 0 5px; letter-spacing: -0.015em;
     text-align: center;
   }
   .subtitle {
@@ -124,7 +117,7 @@
     width: 230px; height: 230px; border-radius: 50%;
     display: none; align-items: center; justify-content: center;
     background: var(--accent-soft); color: var(--accent);
-    font-family: var(--serif); font-size: 64px; font-weight: 600;
+    font-family: var(--serif); font-size: 60px; font-weight: 600;
   }
 
   .socials { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; justify-content: center; }
@@ -144,14 +137,14 @@
   }
 
   /* ---------- lead, labels, fact bullets ---------- */
-  .lead { font-size: 20px; margin: 0 0 6px; }
+  .lead { font-size: 18px; margin: 0 0 6px; }
   .label {
     font-family: var(--sans); font-size: 12px; font-weight: 600;
     letter-spacing: .09em; text-transform: uppercase; color: var(--faint);
     margin: 24px 0 8px;
   }
   .facts { list-style: none; padding: 0; margin: 0; }
-  .facts li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 17px; }
+  .facts li { position: relative; padding-left: 20px; margin-bottom: 9px; font-size: 15.5px; }
   .facts li::before { content: "▸"; position: absolute; left: 0; top: -1px; color: var(--accent); }
 
   /* ---------- contact list under photo ---------- */
@@ -180,7 +173,7 @@
 
   /* ---------- collaboration topics ---------- */
   .topics { list-style: none; padding: 0; margin: 12px 0 16px; }
-  .topics li { position: relative; padding-left: 22px; margin-bottom: 10px; }
+  .topics li { position: relative; padding-left: 22px; margin-bottom: 10px; font-size: 15.5px; }
   .topics li::before { content: "◆"; position: absolute; left: 0; top: 2px; font-size: 11px; color: var(--accent); }
 
   /* ---------- collaboration callout ---------- */
@@ -189,20 +182,20 @@
     background: var(--accent-soft);
     border-left: 4px solid var(--accent); border-radius: 6px;
   }
-  .collab h2 { border: 0; margin: 0 0 8px; padding: 0; font-size: 22px; }
-  .collab p { margin: 0 0 10px; }
+  .collab h2 { border: 0; margin: 0 0 8px; padding: 0; font-size: 20px; }
+  .collab p { margin: 0 0 10px; font-size: 15.5px; }
   .collab p:last-child { margin-bottom: 0; }
 
   /* ---------- sections ---------- */
   section { margin-top: 52px; }
   h2 {
-    font-family: var(--serif); font-weight: 600; font-size: 26px;
+    font-family: var(--serif); font-weight: 600; font-size: 23px;
     margin: 0 0 18px; padding-bottom: 8px; border-bottom: 1px solid var(--rule);
   }
 
   /* news */
   .news { list-style: none; padding: 0; margin: 0; }
-  .news li { display: grid; grid-template-columns: 96px 1fr; gap: 16px; padding: 7px 0; }
+  .news li { display: grid; grid-template-columns: 96px 1fr; gap: 16px; padding: 7px 0; font-size: 15.5px; }
   .news time { font-family: var(--sans); font-size: 14px; color: var(--faint); padding-top: 3px; white-space: nowrap; }
 
   /* publications */
@@ -214,13 +207,13 @@
     color: #fff; background: var(--accent); border-radius: 4px; padding: 5px 6px; line-height: 1.3;
   }
   .venue.muted { background: var(--faint); }
-  .pub-title { font-weight: 600; font-size: 18.5px; line-height: 1.4; margin: 0 0 4px; }
+  .pub-title { font-weight: 600; font-size: 17px; line-height: 1.4; margin: 0 0 4px; }
   .pub-title a { color: var(--text); }
   .pub-title a:hover { color: var(--accent); }
-  .authors { margin: 0; color: var(--muted); font-size: 16.5px; }
+  .authors { margin: 0; color: var(--muted); font-size: 15px; }
   .authors .me { color: var(--text); font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-  .pub-venue { margin: 2px 0 0; font-style: italic; font-size: 16.5px; }
-  .tldr { margin: 8px 0 0; font-size: 16.5px; }
+  .pub-venue { margin: 2px 0 0; font-style: italic; font-size: 14.5px; }
+  .tldr { margin: 8px 0 0; font-size: 15px; }
   .pub-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
   .btn {
     font-family: var(--sans); font-size: 12.5px; font-weight: 500; letter-spacing: .03em; text-transform: uppercase;
@@ -229,7 +222,7 @@
   }
   .btn:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
   .abstract {
-    margin-top: 12px; padding: 14px 18px; font-size: 16px;
+    margin-top: 12px; padding: 14px 18px; font-size: 14.5px;
     background: var(--card); border: 1px solid var(--rule); border-radius: 6px;
   }
   .equal { font-family: var(--sans); font-size: 13px; color: var(--faint); margin-top: 6px; }
@@ -240,7 +233,7 @@
   .timeline .role { font-weight: 600; }
   .timeline .org { color: var(--muted); }
   .timeline .when { font-family: var(--sans); font-size: 14px; color: var(--faint); white-space: nowrap; padding-top: 3px; }
-  .timeline .desc { grid-column: 1 / -1; font-size: 16.5px; margin: 0; }
+  .timeline .desc { grid-column: 1 / -1; font-size: 15px; margin: 0; }
 
   footer {
     max-width: 860px; margin: 40px auto 0; padding: 24px;
@@ -250,7 +243,7 @@
 
   /* ---------- responsive ---------- */
   @media (max-width: 720px) {
-    body { font-size: 17px; }
+    body { font-size: 16px; }
     .nav-links { display: none; }
     main { padding-top: 32px; }
     .intro { grid-template-columns: 1fr; gap: 24px; }
@@ -282,8 +275,6 @@
 </nav>
 
 <div class="hero">
-  <!-- generated node graph, purely decorative -->
-  <svg class="hero-graph" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><line x1="27" y1="82" x2="105" y2="57"/><line x1="1" y1="173" x2="123" y2="196"/><line x1="8" y1="354" x2="70" y2="307"/><line x1="-26" y1="408" x2="94" y2="394"/><line x1="66" y1="19" x2="105" y2="57"/><line x1="123" y1="196" x2="181" y2="189"/><line x1="123" y1="196" x2="186" y2="260"/><line x1="123" y1="196" x2="102" y2="259"/><line x1="105" y1="57" x2="165" y2="-15"/><line x1="165" y1="-15" x2="155" y2="82"/><line x1="66" y1="19" x2="165" y2="-15"/><line x1="66" y1="19" x2="155" y2="82"/><line x1="181" y1="189" x2="263" y2="226"/><line x1="102" y1="259" x2="186" y2="260"/><line x1="185" y1="346" x2="182" y2="407"/><line x1="186" y1="260" x2="185" y2="346"/><line x1="182" y1="407" x2="299" y2="413"/><line x1="309" y1="30" x2="299" y2="96"/><line x1="309" y1="30" x2="399" y2="21"/><line x1="181" y1="189" x2="265" y2="152"/><line x1="265" y1="152" x2="263" y2="226"/><line x1="294" y1="330" x2="342" y2="344"/><line x1="294" y1="330" x2="299" y2="413"/><line x1="309" y1="30" x2="337" y2="67"/><line x1="399" y1="21" x2="337" y2="67"/><line x1="395" y1="166" x2="400" y2="246"/><line x1="400" y1="246" x2="437" y2="153"/><line x1="342" y1="344" x2="387" y2="406"/><line x1="387" y1="406" x2="465" y2="417"/><line x1="299" y1="413" x2="387" y2="406"/><line x1="435" y1="-10" x2="534" y2="14"/><line x1="437" y1="153" x2="436" y2="226"/><line x1="400" y1="246" x2="436" y2="226"/><line x1="395" y1="166" x2="436" y2="226"/><line x1="481" y1="317" x2="465" y2="417"/><line x1="436" y1="226" x2="481" y2="317"/><line x1="534" y1="14" x2="628" y2="-6"/><line x1="534" y1="14" x2="530" y2="93"/><line x1="529" y1="163" x2="535" y2="238"/><line x1="584" y1="354" x2="633" y2="394"/><line x1="621" y1="197" x2="628" y2="237"/><line x1="664" y1="326" x2="633" y2="394"/><line x1="633" y1="394" x2="718" y2="399"/><line x1="669" y1="93" x2="722" y2="90"/><line x1="712" y1="5" x2="722" y2="90"/><line x1="730" y1="165" x2="768" y2="251"/><line x1="669" y1="93" x2="730" y2="165"/><line x1="768" y1="251" x2="846" y2="194"/><line x1="857" y1="19" x2="815" y2="65"/><line x1="857" y1="19" x2="906" y2="96"/><line x1="815" y1="65" x2="894" y2="28"/><line x1="811" y1="279" x2="855" y2="342"/><line x1="846" y1="194" x2="811" y2="279"/><line x1="855" y1="342" x2="895" y2="404"/><line x1="894" y1="28" x2="906" y2="96"/><line x1="906" y1="96" x2="908" y2="187"/><line x1="902" y1="349" x2="895" y2="404"/><line x1="1019" y1="21" x2="1023" y2="71"/><line x1="1019" y1="21" x2="1099" y2="107"/><line x1="1023" y1="71" x2="1042" y2="150"/><line x1="1042" y1="150" x2="1138" y2="177"/><line x1="908" y1="187" x2="984" y2="238"/><line x1="984" y1="238" x2="1012" y2="310"/><line x1="1012" y1="310" x2="995" y2="412"/><line x1="995" y1="412" x2="1077" y2="445"/><line x1="1019" y1="21" x2="1112" y2="-22"/><line x1="1112" y1="-22" x2="1169" y2="92"/><line x1="1099" y1="107" x2="1169" y2="92"/><line x1="1138" y1="177" x2="1199" y2="182"/><line x1="1099" y1="107" x2="1138" y2="177"/><line x1="1120" y1="257" x2="1085" y2="308"/><line x1="1120" y1="257" x2="1188" y2="282"/><line x1="1138" y1="177" x2="1120" y2="257"/><line x1="1012" y1="310" x2="1085" y2="308"/><line x1="1085" y1="308" x2="1173" y2="339"/><line x1="1169" y1="92" x2="1199" y2="182"/><line x1="1199" y1="182" x2="1188" y2="282"/><line x1="1120" y1="257" x2="1173" y2="339"/><line x1="1077" y1="445" x2="1215" y2="444"/><line x1="1188" y1="282" x2="1215" y2="444"/><circle class="c" cx="-3" cy="4" r="4"/><circle class="a" cx="27" cy="82" r="6"/><circle class="" cx="1" cy="173" r="3"/><circle class="a" cx="-20" cy="253" r="5"/><circle class="b" cx="8" cy="354" r="3"/><circle class="b" cx="-26" cy="408" r="4"/><circle class="" cx="66" cy="19" r="6"/><circle class="" cx="105" cy="57" r="3"/><circle class="" cx="123" cy="196" r="6"/><circle class="a" cx="102" cy="259" r="4"/><circle class="a" cx="70" cy="307" r="3"/><circle class="a" cx="94" cy="394" r="4"/><circle class="a" cx="165" cy="-15" r="5"/><circle class="" cx="155" cy="82" r="3"/><circle class="a" cx="181" cy="189" r="6"/><circle class="" cx="186" cy="260" r="3"/><circle class="b" cx="185" cy="346" r="6"/><circle class="c" cx="182" cy="407" r="6"/><circle class="b" cx="309" cy="30" r="6"/><circle class="a" cx="299" cy="96" r="5"/><circle class="" cx="265" cy="152" r="3"/><circle class="a" cx="263" cy="226" r="4"/><circle class="c" cx="294" cy="330" r="6"/><circle class="b" cx="299" cy="413" r="5"/><circle class="c" cx="399" cy="21" r="4"/><circle class="a" cx="337" cy="67" r="3"/><circle class="" cx="395" cy="166" r="5"/><circle class="" cx="400" cy="246" r="6"/><circle class="a" cx="342" cy="344" r="5"/><circle class="b" cx="387" cy="406" r="5"/><circle class="" cx="435" cy="-10" r="4"/><circle class="c" cx="491" cy="99" r="4"/><circle class="b" cx="437" cy="153" r="5"/><circle class="c" cx="436" cy="226" r="4"/><circle class="c" cx="481" cy="317" r="4"/><circle class="a" cx="465" cy="417" r="3"/><circle class="b" cx="534" cy="14" r="5"/><circle class="c" cx="530" cy="93" r="3"/><circle class="" cx="529" cy="163" r="5"/><circle class="" cx="535" cy="238" r="4"/><circle class="b" cx="584" cy="354" r="5"/><circle class="b" cx="541" cy="443" r="4"/><circle class="c" cx="628" cy="-6" r="4"/><circle class="" cx="669" cy="93" r="6"/><circle class="c" cx="621" cy="197" r="4"/><circle class="" cx="628" cy="237" r="6"/><circle class="" cx="664" cy="326" r="3"/><circle class="" cx="633" cy="394" r="4"/><circle class="b" cx="712" cy="5" r="6"/><circle class="c" cx="722" cy="90" r="3"/><circle class="a" cx="730" cy="165" r="6"/><circle class="" cx="768" cy="251" r="3"/><circle class="b" cx="743" cy="358" r="5"/><circle class="b" cx="718" cy="399" r="5"/><circle class="c" cx="857" cy="19" r="3"/><circle class="c" cx="815" cy="65" r="3"/><circle class="" cx="846" cy="194" r="6"/><circle class="a" cx="811" cy="279" r="6"/><circle class="c" cx="855" cy="342" r="4"/><circle class="c" cx="826" cy="396" r="3"/><circle class="c" cx="894" cy="28" r="6"/><circle class="c" cx="906" cy="96" r="5"/><circle class="c" cx="908" cy="187" r="5"/><circle class="b" cx="929" cy="240" r="5"/><circle class="c" cx="902" cy="349" r="5"/><circle class="b" cx="895" cy="404" r="5"/><circle class="" cx="1019" cy="21" r="3"/><circle class="a" cx="1023" cy="71" r="3"/><circle class="a" cx="1042" cy="150" r="6"/><circle class="c" cx="984" cy="238" r="3"/><circle class="b" cx="1012" cy="310" r="6"/><circle class="" cx="995" cy="412" r="5"/><circle class="" cx="1112" cy="-22" r="4"/><circle class="c" cx="1099" cy="107" r="6"/><circle class="b" cx="1138" cy="177" r="4"/><circle class="" cx="1120" cy="257" r="3"/><circle class="c" cx="1085" cy="308" r="4"/><circle class="a" cx="1077" cy="445" r="3"/><circle class="" cx="1213" cy="28" r="6"/><circle class="c" cx="1169" cy="92" r="3"/><circle class="a" cx="1199" cy="182" r="3"/><circle class="b" cx="1188" cy="282" r="4"/><circle class="" cx="1173" cy="339" r="5"/><circle class="c" cx="1215" cy="444" r="4"/></svg>
   <div class="hero-inner">
 
   <!-- ================= INTRO ================= -->
