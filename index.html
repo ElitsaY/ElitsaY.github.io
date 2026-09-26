@@ -113,13 +113,12 @@
 
   /* ---------- sections: label rail + content ---------- */
   section {
-    display: grid; grid-template-columns: 280px 1fr; gap: 48px;
     padding: 40px 0; border-top: 1px solid var(--rule);
   }
   header + section { margin-top: 36px; }
   h2 {
     font-family: var(--serif); font-weight: 600; font-size: 22px;
-    margin: 0; line-height: 1.3;
+    margin: 0 0 24px; line-height: 1.3;
   }
   h2::after {
     content: ""; display: block; width: 32px; height: 3px; border-radius: 2px;
@@ -140,6 +139,9 @@
   .org { color: var(--muted); font-weight: 400; }
   .when { font-size: 14px; white-space: nowrap; }
   .desc { margin: 4px 0 0; font-size: 15px; color: var(--muted); }
+  .bullets { margin: 6px 0 0; padding-left: 18px; font-size: 15px; color: var(--muted); }
+  .bullets li { margin: 2px 0; }
+  .bullets li::marker { color: var(--c, var(--faint)); }
   .has-logo { display: grid; grid-template-columns: 48px 1fr; gap: 16px; align-items: start; }
   .logo {
     width: 48px; height: 48px; border-radius: 10px; margin-top: 2px;
@@ -156,8 +158,8 @@
     display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .03em;
     color: var(--accent); background: var(--accent-soft); border-radius: 4px; padding: 2px 8px; margin-bottom: 8px;
   }
-  .tag.semeval { color: var(--sage); background: var(--sage-soft); }
   .tag.soon { color: var(--gold); background: var(--gold-soft); }
+  .pub-links .tag { margin: 0 4px 0 0; align-self: center; }
   .authors { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
   .me { color: var(--text); font-weight: 600; }
   .pub-venue { margin: 2px 0 0; font-style: italic; font-size: 14.5px; color: var(--muted); }
@@ -175,10 +177,51 @@
   }
   .equal { font-size: 13px; color: var(--faint); margin: 8px 0 0; }
 
+  /* teaching cards */
+  .courses { display: grid; grid-template-columns: 1.35fr 1fr; gap: 20px; }
+  .course {
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column; gap: 12px;
+    padding: 24px 24px 22px; border-radius: 16px;
+    background: var(--bg); border: 1px solid var(--rule);
+    box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 6px 18px -10px rgba(0,0,0,.12);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .course:not(.soon):hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--sage) 40%, var(--rule)); box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 14px 30px -14px rgba(0,0,0,.18); }
+  .course.soon { background: transparent; box-shadow: none; border: 1.5px dashed color-mix(in srgb, var(--faint) 55%, transparent); }
+  .course-top { display: flex; align-items: center; gap: 12px; position: relative; }
+  .course-meta { font-size: 13px; line-height: 1.4; color: var(--muted); }
+  .course-title { font-family: var(--serif); font-size: 22px; font-weight: 600; line-height: 1.25; margin: 4px 0 0; position: relative; max-width: 22ch; }
+  .course-title a { color: var(--text); }
+  .course-title a:hover { color: var(--sage); text-decoration: none; }
+  .course-desc { margin: 0; font-size: 15px; color: var(--muted); position: relative; max-width: 42ch; }
+  .course .topics { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 0; padding: 0; list-style: none; position: relative; }
+  .course .topics li { font-size: 12.5px; font-weight: 500; color: var(--sage); background: var(--chip); border-radius: 999px; padding: 2px 10px; }
+  .course-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin-top: auto; padding-top: 8px; position: relative; }
+  .cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 14.5px; font-weight: 600; color: #fff; background: var(--sage);
+    border-radius: 999px; padding: 9px 18px;
+  }
+  .cta span { transition: transform .2s ease; }
+  .cta:hover { color: #fff; text-decoration: none; filter: brightness(1.08); }
+  .course:hover .cta span, .cta:hover span { transform: translateX(4px); }
+  .cta.disabled { color: var(--faint); background: var(--chip); cursor: default; }
+  .cta-2 { font-size: 14px; font-weight: 500; color: var(--sage); }
+  .cta-2:hover { color: var(--sage); }
+  .course-art { position: absolute; right: -6px; top: 10px; width: 170px; opacity: .55; transition: transform .4s ease; }
+  .course:hover .course-art { transform: rotate(-4deg) scale(1.04); }
+  .course-art .edges path { stroke: var(--sage); stroke-width: 1.6; fill: none; opacity: .5; }
+  .course-art .nodes circle { fill: var(--bg); stroke: var(--sage); stroke-width: 1.6; }
+  .course-art .nodes .goal { fill: var(--sage); }
+  @media (prefers-color-scheme: dark) { .cta { color: #10201a; } .cta:hover { color: #10201a; } }
+
   footer { padding: 28px 0 40px; border-top: 1px solid var(--rule); font-size: 13px; color: var(--faint); }
 
   /* ---------- responsive ---------- */
   @media (max-width: 760px) {
+    .courses { grid-template-columns: 1fr; }
+    .course-art { width: 120px; opacity: .4; }
     .wrap { padding: 0 16px; }
     .nav-links { display: none; }
     header { padding: 36px 0 8px; }
@@ -187,7 +230,7 @@
     .links { margin-top: 18px; }
     h1 { font-size: 34px; }
     .lead { font-size: 16.5px; }
-    section { grid-template-columns: 1fr; gap: 18px; padding: 32px 0; }
+    section { padding: 32px 0; }
     header + section { margin-top: 24px; }
   }
 </style>
@@ -212,7 +255,7 @@
   <header>
     <div class="intro">
       <div>
-        <img class="photo" src="assets/img/profile.jpg" alt="Photo of Elitsa Yotkova"
+        <img class="photo" src="assets/img/profile.jpg?v=2" alt="Photo of Elitsa Yotkova"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="photo-fallback" aria-hidden="true">EY</div>
         <ul class="links">
@@ -266,11 +309,11 @@
     <h2>Publications</h2>
     <ul class="entries">
       <li class="entry">
-        <span class="tag">EMNLP Findings 2026</span>
         <p class="entry-title"><a href="https://arxiv.org/abs/2609.01369" target="_blank" rel="noopener">How Correct Is Your Answer? A Semantic Correctness Framework for Open QA Evaluation</a></p>
         <p class="authors"><span class="me">Elitsa Yotkova</span>*, Violeta Kastreva*, Petar Velkov, Hristo Boyanov, Dimitar Dimitrov, Ivan Koychev, Preslav Nakov</p>
         <p class="pub-venue">Findings of the Association for Computational Linguistics: EMNLP 2026</p>
         <div class="pub-links">
+          <span class="tag">EMNLP Findings 2026</span>
           <button class="btn" type="button" aria-expanded="false" data-target="abs-cap">Abstract</button>
           <a class="btn" href="https://arxiv.org/abs/2609.01369" target="_blank" rel="noopener">arXiv</a>
           <a class="btn" href="https://arxiv.org/pdf/2609.01369" target="_blank" rel="noopener">PDF</a>
@@ -291,11 +334,11 @@
       </li>
 
       <li class="entry">
-        <span class="tag semeval">SemEval 2026</span>
         <p class="entry-title"><a href="https://aclanthology.org/2026.semeval-1.275.pdf" target="_blank" rel="noopener">FMI_SU_Yotkova_Kastreva at SemEval-2026 Task 13: Lightweight Detection of LLM-Generated Code via Stylometric Signals</a></p>
         <p class="authors"><span class="me">Elitsa Yotkova</span>*, Violeta Kastreva*, Dimitar Dimitrov, Ivan Koychev, Preslav Nakov</p>
         <p class="pub-venue">Proceedings of the 20th International Workshop on Semantic Evaluation (SemEval 2026), co-located with ACL</p>
         <div class="pub-links">
+          <span class="tag">SemEval 2026</span>
           <button class="btn" type="button" aria-expanded="false" data-target="abs-semeval">Abstract</button>
           <a class="btn" href="https://aclanthology.org/2026.semeval-1.275.pdf" target="_blank" rel="noopener">PDF</a>
           <a class="btn" href="https://github.com/violeta-kastreva/SemEvalTask13-SubtaskA" target="_blank" rel="noopener">Code</a>
@@ -320,33 +363,39 @@
   <!-- ================= TEACHING ================= -->
   <section id="teaching">
     <h2>Teaching</h2>
-    <ul class="entries">
-      <li class="entry">
-        <div class="entry-head">
-          <p class="entry-title"><a href="https://elitsay.github.io/AI_FMI_course/docs/" target="_blank" rel="noopener">Intelligent Systems / Artificial Intelligence</a></p>
+    <div class="courses">
+      <article class="course">
+        <svg class="course-art" viewBox="0 0 160 120" aria-hidden="true">
+            <g class="edges"><path d="M80 18 L36 58 M80 18 L80 58 M80 18 L124 58 M36 58 L18 98 M36 58 L54 98 M124 58 L108 98 M124 58 L142 98"/></g>
+            <g class="nodes"><circle cx="80" cy="18" r="9"/><circle cx="36" cy="58" r="8"/><circle cx="80" cy="58" r="8"/><circle cx="124" cy="58" r="8"/><circle cx="18" cy="98" r="7"/><circle cx="54" cy="98" r="7"/><circle cx="108" cy="98" r="7"/><circle class="goal" cx="142" cy="98" r="7"/></g>
+          </svg>
+        <div class="course-top">
+          <span class="logo"><img src="assets/img/logos/sofia-university.png" alt="Sofia University logo" loading="lazy"></span>
+          <span class="course-meta">Sofia University, FMI<br>Final-year BSc</span>
         </div>
-        <p class="desc">Sofia University, FMI · final-year BSc students</p>
-        <p class="desc">Interactive class notes for the labs: search, constraint satisfaction, genetic algorithms, games and an introduction to machine learning.</p>
-        <div class="pub-links">
-          <a class="btn" href="https://elitsay.github.io/AI_FMI_course/docs/" target="_blank" rel="noopener">Course page</a>
-          <a class="btn" href="https://github.com/ElitsaY/AI_FMI_course" target="_blank" rel="noopener">Notebooks</a>
+        <h3 class="course-title"><a href="https://elitsay.github.io/AI_FMI_course/docs/" target="_blank" rel="noopener">Intelligent Systems / Artificial Intelligence</a></h3>
+        <p class="course-desc">Interactive class notes for the labs.</p>
+        <ul class="topics" aria-label="Lab topics">
+          <li>Search</li><li>A*</li><li>ML</li><li>NLP</li>
+        </ul>
+        <div class="course-actions">
+          <a class="cta" href="https://elitsay.github.io/AI_FMI_course/docs/" target="_blank" rel="noopener">Open the class notes <span aria-hidden="true">→</span></a>
+          <a class="cta-2" href="https://github.com/ElitsaY/AI_FMI_course" target="_blank" rel="noopener">Notebooks on GitHub</a>
         </div>
-      </li>
-      <li class="entry">
-        <div class="entry-head">
-          <p class="entry-title">Information Retrieval</p>
+      </article>
+
+      <article class="course soon">
+        <div class="course-top">
+          <span class="logo"><img src="assets/img/logos/sofia-university.png" alt="Sofia University logo" loading="lazy"></span>
+          <span class="course-meta">Sofia University, FMI<br>MSc, Information Retrieval &amp; Knowledge Discovery</span>
         </div>
-        <p class="desc">Sofia University, FMI · MSc students in Information Retrieval &amp; Knowledge Discovery</p>
-        <div class="pub-links"><span class="tag soon">Course page coming soon</span></div>
-      </li>
-      <li class="entry">
-        <div class="entry-head">
-          <p class="entry-title">Teaching Assistant <span class="org">· Sofia University, FMI</span></p>
-          <span class="when">2022 – present</span>
+        <h3 class="course-title">Information Retrieval</h3>
+        <p class="course-desc">Course page is on its way.</p>
+        <div class="course-actions">
+          <span class="cta disabled">Coming soon <span aria-hidden="true">⏳</span></span>
         </div>
-        <p class="desc">Six courses and 775+ students, including Data Structures &amp; Algorithms and Artificial Intelligence. I also supervise student NLP projects.</p>
-      </li>
-    </ul>
+      </article>
+    </div>
   </section>
 
   <!-- ================= EXPERIENCE ================= -->
@@ -360,7 +409,11 @@
             <p class="entry-title">Software Engineering Intern <span class="org">· Google, Search · Zurich</span></p>
             <span class="when">Jun – Aug 2026</span>
           </div>
-          <p class="desc">Evaluated the robustness of a citation-bias autorater for AI Mode across three Gemini models, showed that a heuristic baseline doesn't generalize, and built a lightweight embedding-based autorater with over 99% precision.</p>
+          <p class="desc">Working on Google Search</p>
+          <ul class="bullets">
+            <li>Autoraters, Autorater reliability evaluation</li>
+            <li>Benchmarking, Empirical proofs</li>
+          </ul>
         </div>
       </li>
       <li class="entry has-logo">
@@ -370,7 +423,10 @@
             <p class="entry-title">Research Assistant <span class="org">· Sofia University, SUMMIT project</span></p>
             <span class="when">Nov 2025 – May 2026</span>
           </div>
-          <p class="desc">Led the semantic-correctness framework for open QA evaluation that became our EMNLP Findings paper.</p>
+          <ul class="bullets">
+            <li>Accepted paper @ EMNLP Findings 2026</li>
+            <li>Accepted paper @ SemEval 2026</li>
+          </ul>
         </div>
       </li>
       <li class="entry has-logo">
@@ -380,7 +436,28 @@
             <p class="entry-title">Software Engineering Intern <span class="org">· Uber · Amsterdam &amp; Sofia</span></p>
             <span class="when">Feb – Aug 2025</span>
           </div>
-          <p class="desc">Built an end-to-end observability dashboard: a Go API and a data pipeline processing millions of records.</p>
+          <ul class="bullets">
+            <li>Built an end-to-end observability dashboard with a Go API (95%+ test coverage) and data pipeline processing 7.3M records.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="entry has-logo">
+        <span class="logo"><img src="assets/img/logos/sofia-university.png" alt="Sofia University logo" loading="lazy"></span>
+        <div>
+          <div class="entry-head">
+            <p class="entry-title">Teaching Assistant <span class="org">· Sofia University, FMI</span></p>
+            <span class="when">2022 – present</span>
+          </div>
+          <p class="desc">775+ students across seven courses. I also supervise student NLP projects.</p>
+          <ul class="bullets">
+            <li>Artificial Intelligence (Python &amp; C++)</li>
+            <li>Information Retrieval (Python, Master's course)</li>
+            <li>Algorithm Design &amp; Analysis Lab (C++)</li>
+            <li>Data Structures (C++)</li>
+            <li>Object-Oriented Programming (C++)</li>
+            <li>Object-Oriented Programming Lab (C++)</li>
+            <li>Introduction to Programming (C++)</li>
+          </ul>
         </div>
       </li>
     </ul>
@@ -390,12 +467,6 @@
   <section id="honors">
     <h2>Honors</h2>
     <ul class="entries">
-      <li class="entry">
-        <div class="entry-head">
-          <p class="entry-title">2nd Place <span class="org">· National Collegiate Programming Contest</span></p>
-          <span class="when">2024</span>
-        </div>
-      </li>
       <li class="entry">
         <div class="entry-head">
           <p class="entry-title"><a href="https://www.progress.com/social-responsibility/women-in-stem-scholarships/recipients" target="_blank" rel="noopener">Women in Tech Scholarship</a> <span class="org">· Progress Software</span></p>
