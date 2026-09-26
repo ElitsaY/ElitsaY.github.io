@@ -283,6 +283,7 @@
   .course-art .edges path { stroke: var(--sage); stroke-width: 1.6; fill: none; opacity: .5; }
   .course-art .nodes circle { fill: var(--bg); stroke: var(--sage); stroke-width: 1.6; }
   .course-art .nodes .goal { fill: var(--sage); }
+  .course-art .nodes rect { fill: var(--bg); stroke: var(--sage); stroke-width: 1.6; }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cta:not(.disabled) { color: #10201a; } }
   :root[data-theme="dark"] .cta:not(.disabled) { color: #10201a; }
 
@@ -468,15 +469,24 @@
         </div>
       </article>
 
-      <article class="course soon">
+      <article class="course">
+        <svg class="course-art index-art" viewBox="0 0 160 120" aria-hidden="true">
+          <g class="edges"><path d="M40 22 H58 M40 60 H58 M40 98 H58"/></g>
+          <g class="nodes">
+            <rect x="8" y="12" width="32" height="20" rx="5"/><rect x="8" y="50" width="32" height="20" rx="5"/><rect x="8" y="88" width="32" height="20" rx="5"/>
+            <circle cx="66" cy="22" r="7"/><circle cx="88" cy="22" r="7"/><circle class="goal" cx="110" cy="22" r="7"/>
+            <circle cx="66" cy="60" r="7"/><circle class="goal" cx="88" cy="60" r="7"/><circle cx="110" cy="60" r="7"/><circle cx="132" cy="60" r="7"/>
+            <circle class="goal" cx="66" cy="98" r="7"/><circle cx="88" cy="98" r="7"/>
+          </g>
+        </svg>
         <div class="course-top">
           <span class="logo"><img src="assets/img/logos/sofia-university.png" alt="Sofia University logo" loading="lazy"></span>
           <span class="course-meta">Sofia University, FMI<br>MSc, Information Retrieval &amp; Knowledge Discovery</span>
         </div>
-        <h3 class="course-title">Information Retrieval</h3>
-        <p class="course-desc">Course page is on its way.</p>
+        <h3 class="course-title"><a href="https://elitsay.github.io/Information_Retrieval_course/docs/index.html" target="_blank" rel="noopener">Information Retrieval</a></h3>
         <div class="course-actions">
-          <span class="cta disabled">Coming soon <span aria-hidden="true">⏳</span></span>
+          <a class="cta" href="https://elitsay.github.io/Information_Retrieval_course/docs/index.html" target="_blank" rel="noopener">Open the class notes <span aria-hidden="true">→</span></a>
+          <a class="cta-2" href="https://github.com/ElitsaY/Information_Retrieval_course" target="_blank" rel="noopener">Notebooks on GitHub</a>
         </div>
       </article>
     </div>
