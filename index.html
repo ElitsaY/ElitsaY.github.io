@@ -75,7 +75,13 @@
   html { scroll-behavior: smooth; scroll-padding-top: 90px; }
   body {
     margin: 0;
-    background: var(--bg);
+    /* same wash as the AI course home page (docs/style.css, body.home) */
+    background:
+      radial-gradient(900px 500px at 0% 0%, color-mix(in srgb, #5c9088 10%, transparent), transparent 70%),
+      radial-gradient(900px 600px at 100% 30%, color-mix(in srgb, #4d7ea8 9%, transparent), transparent 70%),
+      radial-gradient(800px 500px at 30% 100%, color-mix(in srgb, #d1ab68 8%, transparent), transparent 70%),
+      var(--bg);
+    background-attachment: fixed;
     color: var(--text);
     font-family: var(--sans);
     font-size: 16px;
@@ -113,7 +119,7 @@
     width: 200px; height: 200px; border-radius: 50%;
     object-fit: cover; object-position: center 20%; display: block;
     background: var(--chip);
-    box-shadow: 0 0 0 5px var(--bg), 0 0 0 8px var(--blue-soft);
+    box-shadow: 0 0 0 5px var(--bg), 0 0 0 8.5px color-mix(in srgb, var(--blue) 75%, transparent), 0 10px 28px -8px rgba(43,106,143,.35);
   }
   .photo-fallback {
     display: none; align-items: center; justify-content: center;
