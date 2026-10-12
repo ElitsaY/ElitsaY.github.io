@@ -252,6 +252,18 @@
     border-left: 3px solid var(--accent); background: var(--accent-soft); border-radius: 0 6px 6px 0;
   }
   .equal { font-size: 13px; color: var(--faint); margin: 8px 0 0; }
+  .pub { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 28px; align-items: start; }
+  .pub-fig {
+    display: block; margin: 4px 0 0; padding: 8px; border-radius: 10px;
+    background: #fff; border: 1px solid var(--rule); box-shadow: 0 1px 3px rgba(20, 40, 60, .06);
+    transition: box-shadow .15s, border-color .15s;
+  }
+  .pub-fig:hover { border-color: var(--blue); box-shadow: 0 4px 14px rgba(20, 40, 60, .12); }
+  .pub-fig img { display: block; width: 100%; height: auto; max-height: 260px; object-fit: contain; }
+  @media (max-width: 720px) {
+    .pub { grid-template-columns: 1fr; gap: 14px; }
+    .pub-fig { max-width: 360px; }
+  }
 
   /* teaching cards */
   .courses { display: grid; grid-template-columns: 1fr; gap: 16px; }
@@ -401,56 +413,62 @@
   <section id="publications">
     <h2>Publications</h2>
     <ul class="entries">
-      <li class="entry">
-        <p class="entry-title pub-title"><a href="https://arxiv.org/abs/2609.01369" target="_blank" rel="noopener">How Correct Is Your Answer? A Semantic Correctness Framework for Open QA Evaluation</a></p>
-        <p class="authors"><span class="me">Elitsa Yotkova</span>*, Violeta Kastreva*, Petar Velkov, Hristo Boyanov, Dimitar Dimitrov, Ivan Koychev, Preslav Nakov</p>
-        <p class="pub-venue">Findings of Empirical Methods in Natural Language Processing (EMNLP 2026)</p>
-        <div class="pub-links">
-          <span class="tag">EMNLP Findings 2026</span>
-          <button class="btn" type="button" aria-expanded="false" data-target="abs-cap">Abstract</button>
-          <a class="btn" href="https://arxiv.org/abs/2609.01369" target="_blank" rel="noopener">arXiv</a>
-          <a class="btn" href="https://arxiv.org/pdf/2609.01369" target="_blank" rel="noopener">PDF</a>
+      <li class="entry pub">
+        <div class="pub-text">
+          <p class="entry-title pub-title"><a href="https://arxiv.org/abs/2609.01369" target="_blank" rel="noopener">How Correct Is Your Answer? A Semantic Correctness Framework for Open QA Evaluation</a></p>
+          <p class="authors"><span class="me">Elitsa Yotkova</span>*, Violeta Kastreva*, Petar Velkov, Hristo Boyanov, Dimitar Dimitrov, Ivan Koychev, Preslav Nakov</p>
+          <p class="pub-venue">Findings of Empirical Methods in Natural Language Processing (EMNLP 2026)</p>
+          <div class="pub-links">
+            <span class="tag">EMNLP Findings 2026</span>
+            <button class="btn" type="button" aria-expanded="false" data-target="abs-cap">Abstract</button>
+            <a class="btn" href="https://arxiv.org/abs/2609.01369" target="_blank" rel="noopener">arXiv</a>
+            <a class="btn" href="https://arxiv.org/pdf/2609.01369" target="_blank" rel="noopener">PDF</a>
+          </div>
+          <div class="abstract" id="abs-cap" hidden>
+            Free-form answers from LLMs can be correct in many surface forms, and they can fail in very different ways:
+            they may be incomplete, contradict the reference, add hallucinated content, or go along with a false premise.
+            Standard judge-based and similarity-based metrics tend to blur these cases together. We propose a semantic
+            correctness taxonomy with eight ordered classes that, for example, separates answers that are verbose but correct
+            from answers that also contain hallucinations. We release <strong>CAP-Correctness</strong>, an 8.8k-example
+            benchmark built from widely used QA datasets, and <strong>CAP-Statements</strong>, an 11k-example dataset for
+            turning question–answer pairs into declarative statements for NLI. Finally, we introduce <strong>CAP</strong>
+            (Context-Aware Precision), a reference-based metric that scores question-conditioned statements with
+            bidirectional NLI. In a monotonicity test that checks whether a metric respects the taxonomy's ordering,
+            CAP outperforms established baselines.
+          </div>
+          <p class="equal">* Equal contribution</p>
         </div>
-        <div class="abstract" id="abs-cap" hidden>
-          Free-form answers from LLMs can be correct in many surface forms, and they can fail in very different ways:
-          they may be incomplete, contradict the reference, add hallucinated content, or go along with a false premise.
-          Standard judge-based and similarity-based metrics tend to blur these cases together. We propose a semantic
-          correctness taxonomy with eight ordered classes that, for example, separates answers that are verbose but correct
-          from answers that also contain hallucinations. We release <strong>CAP-Correctness</strong>, an 8.8k-example
-          benchmark built from widely used QA datasets, and <strong>CAP-Statements</strong>, an 11k-example dataset for
-          turning question–answer pairs into declarative statements for NLI. Finally, we introduce <strong>CAP</strong>
-          (Context-Aware Precision), a reference-based metric that scores question-conditioned statements with
-          bidirectional NLI. In a monotonicity test that checks whether a metric respects the taxonomy's ordering,
-          CAP outperforms established baselines.
-        </div>
-        <p class="equal">* Equal contribution</p>
+        <a class="pub-fig" href="assets/img/papers/cap-teaser.png" target="_blank" rel="noopener"><img src="assets/img/papers/cap-teaser.png" alt="Example from the paper: for the question &quot;At what temperature does water boil?&quot;, a contradictory answer scores 0.99 on BERTScore and COMET but 0.01 on CAP, while an equivalent paraphrase scores 0.99 on CAP" width="820" height="624" loading="lazy"></a>
       </li>
 
-      <li class="entry">
-        <p class="entry-title pub-title"><a href="https://aclanthology.org/2026.semeval-1.275.pdf" target="_blank" rel="noopener">Lightweight Detection of LLM-Generated Code via Stylometric Signals</a></p>
-        <p class="authors"><span class="me">Elitsa Yotkova</span>*, Violeta Kastreva*, Dimitar Dimitrov, Ivan Koychev, Preslav Nakov</p>
-        <p class="pub-venue">International Workshop on Semantic Evaluation (SemEval 2026)</p>
-        <p class="pub-venue">Women in Machine Learning Workshop (WiML @ NeurIPS 2026), non-archival</p>
-        <div class="pub-links">
-          <span class="tag">SemEval 2026</span>
-          <span class="tag">WiML @ NeurIPS 2026</span>
-          <button class="btn" type="button" aria-expanded="false" data-target="abs-semeval">Abstract</button>
-          <a class="btn" href="https://aclanthology.org/2026.semeval-1.275.pdf" target="_blank" rel="noopener">PDF</a>
-          <a class="btn" href="https://github.com/violeta-kastreva/SemEvalTask13-SubtaskA" target="_blank" rel="noopener">Code</a>
-          <a class="btn" href="https://www.kaggle.com/datasets/violetakastreva/line-level-code-vs-text-classification-dataset" target="_blank" rel="noopener">Dataset</a>
+      <li class="entry pub">
+        <div class="pub-text">
+          <p class="entry-title pub-title"><a href="https://aclanthology.org/2026.semeval-1.275.pdf" target="_blank" rel="noopener">Lightweight Detection of LLM-Generated Code via Stylometric Signals</a></p>
+          <p class="authors"><span class="me">Elitsa Yotkova</span>*, Violeta Kastreva*, Dimitar Dimitrov, Ivan Koychev, Preslav Nakov</p>
+          <p class="pub-venue">International Workshop on Semantic Evaluation (SemEval 2026)</p>
+          <p class="pub-venue">Women in Machine Learning Workshop (WiML @ NeurIPS 2026), non-archival</p>
+          <div class="pub-links">
+            <span class="tag">SemEval 2026</span>
+            <span class="tag">WiML @ NeurIPS 2026</span>
+            <button class="btn" type="button" aria-expanded="false" data-target="abs-semeval">Abstract</button>
+            <a class="btn" href="https://aclanthology.org/2026.semeval-1.275.pdf" target="_blank" rel="noopener">PDF</a>
+            <a class="btn" href="https://github.com/violeta-kastreva/SemEvalTask13-SubtaskA" target="_blank" rel="noopener">Code</a>
+            <a class="btn" href="https://www.kaggle.com/datasets/violetakastreva/line-level-code-vs-text-classification-dataset" target="_blank" rel="noopener">Dataset</a>
+          </div>
+          <div class="abstract" id="abs-semeval" hidden>
+            SemEval-2026 Task 13 asks systems to detect machine-generated code across programming languages and
+            application scenarios, including languages and domains not seen during training. For Subtask A
+            (binary classification), we compare pretrained code encoders with lightweight feature-based approaches.
+            We design ratio-based stylometric features that are less sensitive to snippet length, and use parsers
+            and a programming-language classifier to extract signals about how descriptive the code is. We also train
+            a separate line-level classifier that finds natural-language text embedded in code samples. A shallow
+            decision tree combined with rules derived from data analysis produces the final predictions. The approach
+            trains on CPU only and runs inference almost instantly, making it a lightweight alternative to large
+            pretrained models.
+          </div>
+          <p class="equal">* Equal contribution</p>
         </div>
-        <div class="abstract" id="abs-semeval" hidden>
-          SemEval-2026 Task 13 asks systems to detect machine-generated code across programming languages and
-          application scenarios, including languages and domains not seen during training. For Subtask A
-          (binary classification), we compare pretrained code encoders with lightweight feature-based approaches.
-          We design ratio-based stylometric features that are less sensitive to snippet length, and use parsers
-          and a programming-language classifier to extract signals about how descriptive the code is. We also train
-          a separate line-level classifier that finds natural-language text embedded in code samples. A shallow
-          decision tree combined with rules derived from data analysis produces the final predictions. The approach
-          trains on CPU only and runs inference almost instantly, making it a lightweight alternative to large
-          pretrained models.
-        </div>
-        <p class="equal">* Equal contribution</p>
+        <a class="pub-fig" href="assets/img/papers/semeval-pipeline.png" target="_blank" rel="noopener"><img src="assets/img/papers/semeval-pipeline.png" alt="Pipeline diagram: raw code snippet, language classifier, code-vs-text classifier and Tree-Sitter parsing, feature extraction, decision tree and logistic regression, decision logic and heuristics, binary classification" width="660" height="985" loading="lazy"></a>
       </li>
     </ul>
   </section>
