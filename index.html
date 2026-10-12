@@ -252,17 +252,19 @@
     border-left: 3px solid var(--accent); background: var(--accent-soft); border-radius: 0 6px 6px 0;
   }
   .equal { font-size: 13px; color: var(--faint); margin: 8px 0 0; }
-  .pub { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 28px; align-items: start; }
-  .pub-fig {
-    display: block; margin: 4px 0 0; padding: 8px; border-radius: 10px;
-    background: #fff; border: 1px solid var(--rule); box-shadow: 0 1px 3px rgba(20, 40, 60, .06);
-    transition: box-shadow .15s, border-color .15s;
+  /* publications: text left, paper figure right */
+  .entry.pub { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 28px; align-items: center; }
+  .pub-thumb {
+    display: flex; align-items: center; justify-content: center; padding: 8px; border-radius: 10px;
+    background: #fff; border: 1px solid var(--rule);
+    box-shadow: 4px 4px 0 color-mix(in srgb, var(--blue) 14%, transparent);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   }
-  .pub-fig:hover { border-color: var(--blue); box-shadow: 0 4px 14px rgba(20, 40, 60, .12); }
-  .pub-fig img { display: block; width: 100%; height: auto; max-height: 260px; object-fit: contain; }
+  .pub-thumb:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--blue) 45%, var(--rule)); box-shadow: 6px 6px 0 color-mix(in srgb, var(--blue) 20%, transparent); }
+  .pub-thumb img { display: block; max-width: 100%; max-height: 210px; width: auto; height: auto; }
   @media (max-width: 720px) {
-    .pub { grid-template-columns: 1fr; gap: 14px; }
-    .pub-fig { max-width: 360px; }
+    .entry.pub { grid-template-columns: 1fr; gap: 14px; }
+    .pub-thumb { max-width: 360px; }
   }
 
   /* teaching cards */
@@ -438,7 +440,7 @@
           </div>
           <p class="equal">* Equal contribution</p>
         </div>
-        <a class="pub-fig" href="assets/img/papers/cap-teaser.png" target="_blank" rel="noopener"><img src="assets/img/papers/cap-teaser.png" alt="Example from the paper: for the question &quot;At what temperature does water boil?&quot;, a contradictory answer scores 0.99 on BERTScore and COMET but 0.01 on CAP, while an equivalent paraphrase scores 0.99 on CAP" width="820" height="624" loading="lazy"></a>
+        <a class="pub-thumb" href="https://arxiv.org/abs/2609.01369" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/papers/cap-overview.svg" alt="Overview of CAP: a question with a gold answer and a model answer, turned into statements and compared with bidirectional NLI, giving scores that fall monotonically across eight correctness classes from exact to contradictory" width="480" height="300" loading="lazy"></a>
       </li>
 
       <li class="entry pub">
@@ -468,7 +470,7 @@
           </div>
           <p class="equal">* Equal contribution</p>
         </div>
-        <a class="pub-fig" href="assets/img/papers/semeval-pipeline.png" target="_blank" rel="noopener"><img src="assets/img/papers/semeval-pipeline.png" alt="Pipeline diagram: raw code snippet, language classifier, code-vs-text classifier and Tree-Sitter parsing, feature extraction, decision tree and logistic regression, decision logic and heuristics, binary classification" width="660" height="985" loading="lazy"></a>
+        <a class="pub-thumb" href="https://aclanthology.org/2026.semeval-1.275.pdf" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/papers/semeval-overview.svg" alt="Overview of the method: a code snippet with natural-language (text-like) lines highlighted, length-robust stylometric ratio features, and a shallow decision tree that labels the snippet Human or LLM" width="480" height="300" loading="lazy"></a>
       </li>
     </ul>
   </section>
