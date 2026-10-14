@@ -40,19 +40,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #ffffff;
-    --text: #1c2127;
-    --muted: #525c67;
-    --faint: #8a939d;
-    --rule: #e5e8ec;
-    --accent: #2b6a8f;
-    --accent-dark: #1d4f6d;
-    --accent-soft: #eef5f9;
-    --chip: #f3f5f7;
-    --blue: #2b6a8f;  --blue-soft: #e6f0f7;
-    --sage: #3d7a66;  --sage-soft: #e4f1ea;
-    --gold: #946a14;  --gold-soft: #fbf0d9;
-    --coral: #b0513c; --coral-soft: #fbe8e1;
+    --bg: #fbf8ef;
+    --text: #26261c;
+    --muted: #5d5b4a;
+    --faint: #8d8a76;
+    --rule: #e6e1cf;
+    --accent: #5f6f2a;
+    --accent-dark: #47541c;
+    --accent-soft: #eef0dc;
+    --chip: #f3eee0;
+    --olive: #5f6f2a; --olive-soft: #eceedb;
+    --clay: #b4593a;  --clay-soft: #f6e7dc;
+    --gold: #9a6c14;  --gold-soft: #f7ecd4;
+    --brown: #8c5a3c; --brown-soft: #f3e6dc;
     --head: "Poppins", "Inter", -apple-system, sans-serif;
     --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   }
@@ -60,47 +60,47 @@
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       color-scheme: dark;
-      --bg: #14181c;
-      --text: #e9edf1;
-      --muted: #b0b9c3;
-      --faint: #7f8a95;
-      --rule: #2a3138;
-      --accent: #85bddc;
-      --accent-dark: #a9d2e8;
-      --accent-soft: #1b252d;
-      --chip: #1e252c;
-      --blue: #8cc0de;  --blue-soft: #1a2833;
-      --sage: #8fcbb5;  --sage-soft: #182a24;
+      --bg: #17160f;
+      --text: #eeebdf;
+      --muted: #bdb8a5;
+      --faint: #8a8673;
+      --rule: #33312a;
+      --accent: #c4cf86;
+      --accent-dark: #d8e0a6;
+      --accent-soft: #262817;
+      --chip: #23221a;
+      --olive: #c4cf86; --olive-soft: #262817;
+      --clay: #e8a07f;  --clay-soft: #33221a;
       --gold: #e3c27a;  --gold-soft: #2c2616;
-      --coral: #eba08d; --coral-soft: #2e1e1a;
+      --brown: #d9a37e; --brown-soft: #2e2119;
     }
   }
   :root[data-theme="dark"] {
     color-scheme: dark;
-    --bg: #14181c;
-    --text: #e9edf1;
-    --muted: #b0b9c3;
-    --faint: #7f8a95;
-    --rule: #2a3138;
-    --accent: #85bddc;
-    --accent-dark: #a9d2e8;
-    --accent-soft: #1b252d;
-    --chip: #1e252c;
-    --blue: #8cc0de;  --blue-soft: #1a2833;
-    --sage: #8fcbb5;  --sage-soft: #182a24;
+    --bg: #17160f;
+    --text: #eeebdf;
+    --muted: #bdb8a5;
+    --faint: #8a8673;
+    --rule: #33312a;
+    --accent: #c4cf86;
+    --accent-dark: #d8e0a6;
+    --accent-soft: #262817;
+    --chip: #23221a;
+    --olive: #c4cf86; --olive-soft: #262817;
+    --clay: #e8a07f;  --clay-soft: #33221a;
     --gold: #e3c27a;  --gold-soft: #2c2616;
-    --coral: #eba08d; --coral-soft: #2e1e1a;
+    --brown: #d9a37e; --brown-soft: #2e2119;
   }
 
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; scroll-padding-top: 90px; }
   body {
     margin: 0;
-    /* same wash as the AI course home page (docs/style.css, body.home) */
+    /* soft peach, olive and gold wash */
     background:
-      radial-gradient(900px 500px at 0% 0%, color-mix(in srgb, #5c9088 10%, transparent), transparent 70%),
-      radial-gradient(900px 600px at 100% 30%, color-mix(in srgb, #4d7ea8 9%, transparent), transparent 70%),
-      radial-gradient(800px 500px at 30% 100%, color-mix(in srgb, #d1ab68 8%, transparent), transparent 70%),
+      radial-gradient(900px 500px at 0% 0%, color-mix(in srgb, #e9b98f 16%, transparent), transparent 70%),
+      radial-gradient(900px 600px at 100% 30%, color-mix(in srgb, #9aa660 10%, transparent), transparent 70%),
+      radial-gradient(800px 500px at 30% 100%, color-mix(in srgb, #e3bf86 12%, transparent), transparent 70%),
       var(--bg);
     background-attachment: fixed;
     color: var(--text);
@@ -157,7 +157,7 @@
     width: 200px; height: 200px; border-radius: 50%;
     object-fit: cover; object-position: center 20%; display: block;
     background: var(--chip);
-    box-shadow: 0 0 0 5px var(--bg), 0 0 0 8.5px color-mix(in srgb, var(--blue) 75%, transparent), 0 10px 28px -8px rgba(43,106,143,.35);
+    box-shadow: 0 0 0 5px var(--bg), 0 0 0 8.5px color-mix(in srgb, var(--olive) 75%, transparent), 0 10px 28px -8px rgba(95,111,42,.3);
   }
   .photo-fallback {
     display: none; align-items: center; justify-content: center;
@@ -174,10 +174,10 @@
   .links { display: flex; flex-direction: column; gap: 10px; margin: 26px 0 0; padding: 0; list-style: none; font-size: 14px; font-weight: 500; }
   .links li { display: flex; align-items: center; gap: 9px; }
   .links a { overflow-wrap: anywhere; }
-  .links svg { width: 16px; height: 16px; fill: currentColor; color: var(--blue); flex: 0 0 auto; }
+  .links svg { width: 16px; height: 16px; fill: currentColor; color: var(--olive); flex: 0 0 auto; }
 
   .interests { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
-  .interests li { font-size: 13px; font-weight: 500; color: var(--blue); background: var(--blue-soft); border-radius: 999px; padding: 3px 12px; }
+  .interests li { font-size: 13px; font-weight: 500; color: var(--olive); background: var(--olive-soft); border-radius: 999px; padding: 3px 12px; }
 
   /* ---------- sections: label rail + content ---------- */
   section {
@@ -192,10 +192,10 @@
     content: ""; display: block; width: 32px; height: 3px; border-radius: 2px;
     margin-top: 10px; background: var(--c, var(--accent));
   }
-  #publications { --c: var(--blue); --c-soft: var(--blue-soft); }
-  #teaching     { --c: var(--sage); --c-soft: var(--sage-soft); }
+  #publications { --c: var(--olive); --c-soft: var(--olive-soft); }
+  #teaching     { --c: var(--clay); --c-soft: var(--clay-soft); }
   #experience   { --c: var(--gold); --c-soft: var(--gold-soft); }
-  #honors       { --c: var(--coral); --c-soft: var(--coral-soft); }
+  #honors       { --c: var(--brown); --c-soft: var(--brown-soft); }
   .when { color: var(--c, var(--faint)); }
   .entries { list-style: none; margin: 0; padding: 0; }
   .entry { padding: 0 0 26px; }
@@ -230,14 +230,14 @@
   .pub-links .tag {
     margin: 0 4px 0 0; align-self: center;
     font-size: 12.5px; font-weight: 600; letter-spacing: .02em;
-    color: #fff; background: var(--blue); border-radius: 999px; padding: 3px 12px;
+    color: #fff; background: var(--olive); border-radius: 999px; padding: 3px 12px;
   }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pub-links .tag { color: #10202b; } }
-  :root[data-theme="dark"] .pub-links .tag { color: #10202b; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pub-links .tag { color: #1a1a10; } }
+  :root[data-theme="dark"] .pub-links .tag { color: #1a1a10; }
   .authors { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
-  .me { color: var(--text); font-weight: 500; text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--blue) 55%, transparent); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+  .me { color: var(--text); font-weight: 500; text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--olive) 55%, transparent); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
   .pub-title { font-family: var(--head); font-size: 18px; font-weight: 600; line-height: 1.4; margin-bottom: 6px; }
-  .pub-venue { margin: 6px 0 0; padding-left: 10px; border-left: 3px solid var(--blue); font-size: 14.5px; font-weight: 500; line-height: 1.5; color: var(--text); }
+  .pub-venue { margin: 6px 0 0; padding-left: 10px; border-left: 3px solid var(--olive); font-size: 14.5px; font-weight: 500; line-height: 1.5; color: var(--text); }
   .pub-venue + .pub-venue { margin-top: 4px; }
   .pub-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
   .btn {
@@ -252,68 +252,34 @@
     border-left: 3px solid var(--accent); background: var(--accent-soft); border-radius: 0 6px 6px 0;
   }
   .equal { font-size: 13px; color: var(--faint); margin: 8px 0 0; }
-  /* publications: text left, paper figure right */
-  .entry.pub { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 28px; align-items: center; }
-  .pub-thumb {
-    display: flex; align-items: center; justify-content: center; padding: 8px; border-radius: 10px;
-    background: #fff; border: 1px solid var(--rule);
-    box-shadow: 4px 4px 0 color-mix(in srgb, var(--blue) 14%, transparent);
-    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-  }
-  .pub-thumb:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--blue) 45%, var(--rule)); box-shadow: 6px 6px 0 color-mix(in srgb, var(--blue) 20%, transparent); }
-  .pub-thumb img { display: block; max-width: 100%; max-height: 210px; width: auto; height: auto; }
-  @media (max-width: 720px) {
-    .entry.pub { grid-template-columns: 1fr; gap: 14px; }
-    .pub-thumb { max-width: 360px; }
-  }
 
-  /* teaching cards */
-  .courses { display: grid; grid-template-columns: 1fr; gap: 16px; }
-  .course {
-    position: relative; overflow: hidden;
-    display: flex; flex-direction: column; gap: 12px;
-    padding: 24px 24px 22px; border-radius: 16px;
-    background: var(--bg); border: 1px solid var(--rule);
-    box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 6px 18px -10px rgba(0,0,0,.12);
-    transition: transform .2s ease, box-shadow .2s ease;
-  }
-  .course:not(.soon):hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--sage) 40%, var(--rule)); box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 14px 30px -14px rgba(0,0,0,.18); }
-  .course.soon { background: transparent; box-shadow: none; border: 1.5px dashed color-mix(in srgb, var(--faint) 55%, transparent); }
-  .course-top { display: flex; align-items: center; gap: 12px; position: relative; }
-  .course-meta { font-size: 13px; line-height: 1.4; color: var(--muted); }
-  .course-title { font-family: var(--head); font-size: 22px; font-weight: 600; line-height: 1.25; margin: 4px 0 0; position: relative; }
-  .course-title a { color: var(--text); }
-  .course-title a:hover { color: var(--sage); text-decoration: none; }
-  .course-desc { margin: 0; font-size: 15px; color: var(--muted); position: relative; max-width: 42ch; }
-  .course .topics { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 0; padding: 0; list-style: none; position: relative; }
-  .course .topics li { font-size: 12.5px; font-weight: 500; color: var(--sage); background: var(--chip); border-radius: 999px; padding: 2px 10px; }
-  .course-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin-top: auto; padding-top: 8px; position: relative; }
-  .cta {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 14.5px; font-weight: 600; color: #fff; background: var(--sage);
-    border-radius: 999px; padding: 9px 18px;
-  }
-  .cta span { transition: transform .2s ease; }
-  .cta:hover { color: #fff; text-decoration: none; filter: brightness(1.08); }
-  .course:hover .cta span, .cta:hover span { transform: translateX(4px); }
-  .cta.disabled { color: var(--faint); background: var(--chip); cursor: default; }
-  .cta-2 { font-size: 14px; font-weight: 500; color: var(--sage); }
-  .cta-2:hover { color: var(--sage); }
-  .course-art { position: absolute; right: -6px; top: 10px; width: 170px; opacity: .55; transition: transform .4s ease; }
-  .course:hover .course-art { transform: rotate(-4deg) scale(1.04); }
-  .course-art .edges path { stroke: var(--sage); stroke-width: 1.6; fill: none; opacity: .5; }
-  .course-art .nodes circle { fill: var(--bg); stroke: var(--sage); stroke-width: 1.6; }
-  .course-art .nodes .goal { fill: var(--sage); }
-  .course-art .nodes rect { fill: var(--bg); stroke: var(--sage); stroke-width: 1.6; }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cta:not(.disabled) { color: #10201a; } }
-  :root[data-theme="dark"] .cta:not(.disabled) { color: #10201a; }
+  /* teaching: same entries as the other sections, doodle on the right */
+  .entry.course { position: relative; }
+  .entry.course > div { min-height: 128px; }
+  .entry.course .topics, .entry.course .pub-links { margin-right: 160px; }
+  .topics { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 0; padding: 0; list-style: none; }
+  .topics li { font-size: 12.5px; font-weight: 500; color: var(--clay); background: var(--chip); border-radius: 999px; padding: 2px 10px; }
+  .btn.primary { color: #fff; background: var(--clay); border-color: var(--clay); }
+  .btn.primary:hover { color: #fff; filter: brightness(1.08); }
+  .btn.primary span { display: inline-block; transition: transform .2s ease; }
+  .btn.primary:hover span { transform: translateX(3px); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn.primary { color: #1a1a10; } }
+  :root[data-theme="dark"] .btn.primary { color: #1a1a10; }
+  .course-art { position: absolute; right: 0; top: 32px; width: 130px; opacity: .7; transition: transform .4s ease; }
+  .entry.course:hover .course-art { transform: rotate(-4deg) scale(1.04); }
+  .course-art .edges path { stroke: var(--clay); stroke-width: 1.6; fill: none; opacity: .5; }
+  .course-art .nodes circle, .course-art .nodes rect { fill: var(--bg); stroke: var(--clay); stroke-width: 1.6; }
+  .course-art .nodes .goal { fill: var(--clay); }
 
   footer { padding: 28px 0 40px; border-top: 1px solid var(--rule); font-size: 13px; color: var(--faint); }
+  footer .wrap { display: flex; align-items: center; gap: 12px; }
+  footer img { width: 44px; height: auto; display: block; }
 
   /* ---------- responsive ---------- */
   @media (max-width: 760px) {
-    .courses { grid-template-columns: 1fr; }
-    .course-art { width: 96px; top: auto; bottom: 14px; right: 10px; opacity: .35; }
+    .when { white-space: normal; }
+    .entry.course .topics, .entry.course .pub-links { margin-right: 110px; }
+    .course-art { width: 96px; }
     .wrap { padding: 0 16px; }
     .nav-inner { flex-wrap: wrap; row-gap: 6px; padding-top: 10px; padding-bottom: 8px; }
     .nav-end { display: contents; }
@@ -328,6 +294,12 @@
     .lead { font-size: 16.5px; }
     section { padding: 32px 0; }
     header + section { margin-top: 24px; }
+  }
+  @media (max-width: 480px) {
+    .entry.course > div { min-height: 0; }
+    .entry.course .topics, .entry.course .pub-links { margin-right: 0; }
+    .course-art { top: auto; bottom: 26px; width: 84px; opacity: .35; }
+    .entry.course:last-child .course-art { bottom: 0; }
   }
 </style>
 </head>
@@ -425,6 +397,8 @@
             <button class="btn" type="button" aria-expanded="false" data-target="abs-cap">Abstract</button>
             <a class="btn" href="https://arxiv.org/abs/2609.01369" target="_blank" rel="noopener">arXiv</a>
             <a class="btn" href="https://arxiv.org/pdf/2609.01369" target="_blank" rel="noopener">PDF</a>
+            <a class="btn" href="https://elitsay.github.io/EMNLP-2026-How-Correct-Is-Your-Answer-/" target="_blank" rel="noopener">Project page</a>
+            <a class="btn" href="https://github.com/ElitsaY/EMNLP-2026-How-Correct-Is-Your-Answer-" target="_blank" rel="noopener">Code</a>
           </div>
           <div class="abstract" id="abs-cap" hidden>
             Free-form answers from LLMs can be correct in many surface forms, and they can fail in very different ways:
@@ -440,7 +414,6 @@
           </div>
           <p class="equal">* Equal contribution</p>
         </div>
-        <a class="pub-thumb" href="https://arxiv.org/abs/2609.01369" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/papers/cap-overview.svg" alt="Overview of CAP: a question with a gold answer and a model answer, turned into statements and compared with bidirectional NLI, giving scores that fall monotonically across eight correctness classes from exact to contradictory" width="480" height="300" loading="lazy"></a>
       </li>
 
       <li class="entry pub">
@@ -470,7 +443,6 @@
           </div>
           <p class="equal">* Equal contribution</p>
         </div>
-        <a class="pub-thumb" href="https://aclanthology.org/2026.semeval-1.275.pdf" target="_blank" rel="noopener" tabindex="-1"><img src="assets/img/papers/semeval-overview.svg" alt="Overview of the method: a code snippet with natural-language (text-like) lines highlighted, length-robust stylometric ratio features, and a shallow decision tree that labels the snippet Human or LLM" width="480" height="300" loading="lazy"></a>
       </li>
     </ul>
   </section>
@@ -478,47 +450,39 @@
   <!-- ================= TEACHING ================= -->
   <section id="teaching">
     <h2>Teaching</h2>
-    <div class="courses">
-      <article class="course">
-        <svg class="course-art" viewBox="0 0 160 120" aria-hidden="true">
-            <g class="edges"><path d="M80 18 L36 58 M80 18 L80 58 M80 18 L124 58 M36 58 L18 98 M36 58 L54 98 M124 58 L108 98 M124 58 L142 98"/></g>
-            <g class="nodes"><circle cx="80" cy="18" r="9"/><circle cx="36" cy="58" r="8"/><circle cx="80" cy="58" r="8"/><circle cx="124" cy="58" r="8"/><circle cx="18" cy="98" r="7"/><circle cx="54" cy="98" r="7"/><circle cx="108" cy="98" r="7"/><circle class="goal" cx="142" cy="98" r="7"/></g>
-          </svg>
-        <div class="course-top">
-          <span class="logo"><img src="assets/img/logos/sofia-university.png" alt="Sofia University logo" loading="lazy"></span>
-          <span class="course-meta">Sofia University, FMI<br>Final-year BSc</span>
+    <ul class="entries">
+      <li class="entry has-logo course">
+        <span class="logo"><img src="assets/img/logos/sofia-university.png" alt="Sofia University logo" loading="lazy"></span>
+        <div>
+          <div class="entry-head">
+            <p class="entry-title"><a href="https://elitsay.github.io/AI_FMI_course/docs/" target="_blank" rel="noopener">Intelligent Systems / Artificial Intelligence</a> <span class="org">· Sofia University, FMI</span></p>
+            <span class="when">Final-year BSc</span>
+          </div>
+          <ul class="topics" aria-label="Lab topics">
+            <li>Search</li><li>A*</li><li>ML</li><li>NLP</li>
+          </ul>
+          <div class="pub-links">
+            <a class="btn primary" href="https://elitsay.github.io/AI_FMI_course/docs/" target="_blank" rel="noopener">Open the class notes <span aria-hidden="true">→</span></a>
+            <a class="btn" href="https://github.com/ElitsaY/AI_FMI_course" target="_blank" rel="noopener">Notebooks on GitHub</a>
+          </div>
         </div>
-        <h3 class="course-title"><a href="https://elitsay.github.io/AI_FMI_course/docs/" target="_blank" rel="noopener">Intelligent Systems / Artificial Intelligence</a></h3>
-        <ul class="topics" aria-label="Lab topics">
-          <li>Search</li><li>A*</li><li>ML</li><li>NLP</li>
-        </ul>
-        <div class="course-actions">
-          <a class="cta" href="https://elitsay.github.io/AI_FMI_course/docs/" target="_blank" rel="noopener">Open the class notes <span aria-hidden="true">→</span></a>
-          <a class="cta-2" href="https://github.com/ElitsaY/AI_FMI_course" target="_blank" rel="noopener">Notebooks on GitHub</a>
+        <svg class="course-art" viewBox="0 0 160 120" aria-hidden="true"><g class="edges"><path d="M80 18 L36 58 M80 18 L80 58 M80 18 L124 58 M36 58 L18 98 M36 58 L54 98 M124 58 L108 98 M124 58 L142 98"/></g><g class="nodes"><circle cx="80" cy="18" r="9"/><circle cx="36" cy="58" r="8"/><circle cx="80" cy="58" r="8"/><circle cx="124" cy="58" r="8"/><circle cx="18" cy="98" r="7"/><circle cx="54" cy="98" r="7"/><circle cx="108" cy="98" r="7"/><circle class="goal" cx="142" cy="98" r="7"/></g></svg>
+      </li>
+      <li class="entry has-logo course">
+        <span class="logo"><img src="assets/img/logos/sofia-university.png" alt="Sofia University logo" loading="lazy"></span>
+        <div>
+          <div class="entry-head">
+            <p class="entry-title"><a href="https://elitsay.github.io/Information_Retrieval_course/docs/index.html" target="_blank" rel="noopener">Information Retrieval</a> <span class="org">· Sofia University, FMI</span></p>
+            <span class="when">MSc, Information Retrieval &amp; Knowledge Discovery</span>
+          </div>
+          <div class="pub-links">
+            <a class="btn primary" href="https://elitsay.github.io/Information_Retrieval_course/docs/index.html" target="_blank" rel="noopener">Open the class notes <span aria-hidden="true">→</span></a>
+            <a class="btn" href="https://github.com/ElitsaY/Information_Retrieval_course" target="_blank" rel="noopener">Notebooks on GitHub</a>
+          </div>
         </div>
-      </article>
-
-      <article class="course">
-        <svg class="course-art index-art" viewBox="0 0 160 120" aria-hidden="true">
-          <g class="edges"><path d="M40 22 H58 M40 60 H58 M40 98 H58"/></g>
-          <g class="nodes">
-            <rect x="8" y="12" width="32" height="20" rx="5"/><rect x="8" y="50" width="32" height="20" rx="5"/><rect x="8" y="88" width="32" height="20" rx="5"/>
-            <circle cx="66" cy="22" r="7"/><circle cx="88" cy="22" r="7"/><circle class="goal" cx="110" cy="22" r="7"/>
-            <circle cx="66" cy="60" r="7"/><circle class="goal" cx="88" cy="60" r="7"/><circle cx="110" cy="60" r="7"/><circle cx="132" cy="60" r="7"/>
-            <circle class="goal" cx="66" cy="98" r="7"/><circle cx="88" cy="98" r="7"/>
-          </g>
-        </svg>
-        <div class="course-top">
-          <span class="logo"><img src="assets/img/logos/sofia-university.png" alt="Sofia University logo" loading="lazy"></span>
-          <span class="course-meta">Sofia University, FMI<br>MSc, Information Retrieval &amp; Knowledge Discovery</span>
-        </div>
-        <h3 class="course-title"><a href="https://elitsay.github.io/Information_Retrieval_course/docs/index.html" target="_blank" rel="noopener">Information Retrieval</a></h3>
-        <div class="course-actions">
-          <a class="cta" href="https://elitsay.github.io/Information_Retrieval_course/docs/index.html" target="_blank" rel="noopener">Open the class notes <span aria-hidden="true">→</span></a>
-          <a class="cta-2" href="https://github.com/ElitsaY/Information_Retrieval_course" target="_blank" rel="noopener">Notebooks on GitHub</a>
-        </div>
-      </article>
-    </div>
+        <svg class="course-art index-art" viewBox="0 0 160 120" aria-hidden="true"><g class="edges"><path d="M40 22 H58 M40 60 H58 M40 98 H58"/></g><g class="nodes"><rect x="8" y="12" width="32" height="20" rx="5"/><rect x="8" y="50" width="32" height="20" rx="5"/><rect x="8" y="88" width="32" height="20" rx="5"/><circle cx="66" cy="22" r="7"/><circle cx="88" cy="22" r="7"/><circle class="goal" cx="110" cy="22" r="7"/><circle cx="66" cy="60" r="7"/><circle class="goal" cx="88" cy="60" r="7"/><circle cx="110" cy="60" r="7"/><circle cx="132" cy="60" r="7"/><circle class="goal" cx="66" cy="98" r="7"/><circle cx="88" cy="98" r="7"/></g></svg>
+      </li>
+    </ul>
   </section>
 
   <!-- ================= EXPERIENCE ================= -->
@@ -602,7 +566,7 @@
 </main>
 
 <footer>
-  <div class="wrap">© 2026 Elitsa Yotkova</div>
+  <div class="wrap"><img src="assets/img/capybara-stars.png" alt="" width="260" height="295" loading="lazy">© 2026 Elitsa Yotkova</div>
 </footer>
 
 <script>
