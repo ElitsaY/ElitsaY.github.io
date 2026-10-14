@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://elitsay.github.io/sitemap.xml
+Sitemap: https://elitsay.github.io/EMNLP-2026-How-Correct-Is-Your-Answer-/sitemap.xml
